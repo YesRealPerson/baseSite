@@ -1,0 +1,40 @@
+content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    margin: 10px;
+    max-height: 40vh;
+    width: auto;
+    float:left;
+    display:block;
+    border: 1px black solid;
+    border-radius: 1%;
+}
+
+#content > div{
+    margin: 0px;
+    padding: 0px;
+}
+
+#overlay{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+#enlarge{
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 0;
+}

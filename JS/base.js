@@ -8,7 +8,6 @@ header.innerHTML=`<img src="./favicon.ico" style="border:none">
 <div id="links" style="border: none">
     <a href="./index.html">home</a>
     <a href="./code.html" >code</a>
-    <a href="./nonsense.html">talking</a>
     <a href="./photography.html" style="border: none">photography</a>
     
 </div>`;

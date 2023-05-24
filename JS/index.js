@@ -1,6 +1,6 @@
 new GitHubCalendar("#activity", "yesrealperson").then(() => {
     document.getElementsByClassName("js-calendar-graph")[0].lastElementChild.remove();
-})
+});
 
 const getSteamActivity = async () => {
     const activity = (await (await fetch("https://steamactivity.spark952.workers.dev/")).json()).response.games;

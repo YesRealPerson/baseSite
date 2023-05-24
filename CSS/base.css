@@ -59,7 +59,7 @@ footer{
     width:100%;
     padding-top: 0.5vh;
     padding-bottom: 1vh;
-    background-color: rgba(200,200,200,0.4);
+    /* background-color: rgba(200,200,200,0.4); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +71,6 @@ footer a{
 
 #content{
     min-height: 59.5vh;
-    background-color: rgba(0, 0, 0, 0.05);
     padding-top: 5vh;
     padding-bottom: 5vh;
     margin-top: 6vh;

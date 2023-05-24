@@ -30,7 +30,7 @@ rect.ContributionCalendar-day[data-level="4"] {
   fill: var(--color-calendar-graph-day-L4-bg);
 }
 
-.calendar .width-full > .float-left {
+.calendar .width-full>.float-left {
   display: none;
 }
 
@@ -139,10 +139,12 @@ rect.ContributionCalendar-day[data-level="4"] {
   margin-left: 9px;
   color: #767676;
 }
+
 .left.text-muted a {
   color: #4078c0;
   text-decoration: none;
 }
+
 .left.text-muted a:hover,
 .monospace a:hover {
   text-decoration: underline;
@@ -155,6 +157,7 @@ h2.f4.text-normal.mb-3 {
 .float-left.text-gray {
   float: left;
 }
+
 #user-activity-overview {
   display: none;
 }
@@ -172,12 +175,15 @@ h2.f4.text-normal.mb-3 {
   display: none;
   pointer-events: none;
 }
+
 .day-tooltip strong {
   color: #dfe2e5;
 }
+
 .day-tooltip.is-visible {
   display: block;
 }
+
 .day-tooltip:after {
   position: absolute;
   bottom: -10px;
@@ -197,17 +203,19 @@ text.ContributionCalendar-label {
 }
 
 .game img {
-  width: 12.5vw;
-  height: auto;
+  width: auto;
+  height: 12vh;
 }
 
-.game div {
+.game a {
   margin-left: 2vw;
 }
 
 .game {
   display: flex;
   align-items: center;
+  font-size: 3vh;
+  margin-bottom: 3vh;
 }
 
 #profile {
@@ -217,14 +225,17 @@ text.ContributionCalendar-label {
   overflow: hidden;
   position: relative;
 }
-#profile *{
-    color: rgb(230, 230, 230);
-    font-family: "Motiva Sans", Sans-serif;
+
+#profile * {
+  color: rgb(230, 230, 230);
+  font-family: "Motiva Sans", Sans-serif;
 }
+
 #profile * video {
   height: auto;
   width: 100%;
 }
+
 #nameIcon {
   position: absolute;
   top: 10px;
@@ -236,10 +247,12 @@ text.ContributionCalendar-label {
   align-items: center;
   font-size: 25px;
 }
-#nameIcon > * img {
+
+#nameIcon>* img {
   width: 90px;
   height: auto;
 }
+
 #avatarOuter {
   position: absolute;
   margin: 0;
@@ -248,15 +261,18 @@ text.ContributionCalendar-label {
   left: 0px;
   z-index: 10;
 }
+
 #avatarOuter img {
   width: 110px;
   height: auto;
 }
+
 #name {
   font-size: 30px;
   margin-left: 30px;
   font-weight: 500;
 }
+
 #tags {
   position: absolute;
   top: 120px;
@@ -269,13 +285,15 @@ text.ContributionCalendar-label {
   align-items: left;
   font-size: 20px;
 }
-#tags > div {
+
+#tags>div {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
 }
-#tags > div > :first-child {
+
+#tags>div> :first-child {
   text-align: center;
   width: 40px;
   height: 40px;
@@ -284,10 +302,12 @@ text.ContributionCalendar-label {
   align-items: center;
   justify-content: center;
 }
+
 #level {
   border: 2px solid rgb(7, 119, 7);
   border-radius: 50%;
 }
-#level > :first-child {
+
+#level> :first-child {
   margin-bottom: 3px;
 }

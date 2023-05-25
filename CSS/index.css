@@ -311,3 +311,18 @@ text.ContributionCalendar-label {
 #level> :first-child {
   margin-bottom: 3px;
 }
+
+#ghProfile > :first-child{
+  display: flex;
+  align-items: center;
+}
+
+#profilePicture{
+  height: 10vh;
+  border-radius: 100%;
+}
+
+#profileName{
+  font-size: 4vh;
+  margin-left: 2vw;
+}

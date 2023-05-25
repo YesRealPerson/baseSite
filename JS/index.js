@@ -25,3 +25,24 @@ const getSteamActivity = async () => {
         document.getElementById("games").appendChild(outer);
     }
 }
+
+const getGitHubActivity = async () => {
+    const latest = (await ((await fetch("https://githubactivity.spark952.workers.dev/")).json()))[0];
+
+    let outer = document.createElement("div");
+
+    let profilePicture = document.createElement("img");
+    profilePicture.src = latest.actor.avatar_url;
+    profilePicture.id = "profilePicture";
+    outer.appendChild(profilePicture);
+
+    let profileName = document.createElement("a");
+    profileName.href = latest.actor.url;
+    profileName.innerHTML = latest.actor.display_login;
+    profileName.id = "profileName";
+    outer.appendChild(profileName);
+
+    document.getElementById("ghProfile").appendChild(outer);
+    console.log("<a href=\""+latest.repo.url+"\">"+latest.repo.name + "</a><br>" + latest.payload.commits[0].message + "<br>" + latest.created_at);
+    document.getElementById("latestActivity").innerHTML += "<b>Repo:</b> <a href=\"https://github.com/"+latest.repo.name+"\">"+latest.repo.name + "</a><br><b>Commit Message:</b> " + latest.payload.commits[0].message + "<br><b>Pushed At:</b> " + latest.created_at;
+}

@@ -37,7 +37,7 @@ const getGitHubActivity = async () => {
     outer.appendChild(profilePicture);
 
     let profileName = document.createElement("a");
-    profileName.href = latest.actor.url;
+    profileName.href = "https://github.com/"+latest.actor.login;
     profileName.innerHTML = latest.actor.display_login;
     profileName.id = "profileName";
     outer.appendChild(profileName);

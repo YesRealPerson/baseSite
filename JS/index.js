@@ -4,7 +4,6 @@ new GitHubCalendar("#activity", "yesrealperson").then(() => {
 
 const getSteamActivity = async () => {
     const activity = (await (await fetch("https://steamactivity.spark952.workers.dev/")).json()).response.games;
-    console.log(activity);
     for(let i = 0; i < activity.length; i++){
         let recentTime = Math.floor(activity[i].playtime_2weeks/60*10)/10 + " hours";
         let allTime = Math.floor(activity[i].playtime_forever/60*10)/10 + " hours";
@@ -43,6 +42,5 @@ const getGitHubActivity = async () => {
     outer.appendChild(profileName);
 
     document.getElementById("ghProfile").appendChild(outer);
-    console.log("<a href=\""+latest.repo.url+"\">"+latest.repo.name + "</a><br>" + latest.payload.commits[0].message + "<br>" + latest.created_at);
     document.getElementById("latestActivity").innerHTML += "<b>Repo:</b> <a href=\"https://github.com/"+latest.repo.name+"\">"+latest.repo.name + "</a><br><b>Commit Message:</b> " + latest.payload.commits[0].message + "<br><b>Pushed At:</b> " + latest.created_at;
 }

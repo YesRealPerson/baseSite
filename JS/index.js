@@ -25,6 +25,21 @@ const getSteamActivity = async () => {
     }
 }
 
+const getCurrentGame = async () => {
+    const currentGame = await (await fetch("https://currentgame.spark952.workers.dev/")).json();
+    if(currentGame.status == "yes"){
+        document.getElementById("currentlyPlayingHeader").innerHTML = "CURRENTLY PLAYING";
+        let body = document.getElementById("currentlyPlayingBody");
+        let banner = document.createElement("img");
+        banner.src = currentGame.banner;
+        let name = document.createElement("a");
+        name.href = currentGame.link;
+        name.innerHTML = currentGame.name;
+        body.appendChild(banner);
+        body.appendChild(name);
+    }
+}
+
 const getGitHubActivity = async () => {
     const latest = (await ((await fetch("https://githubactivity.spark952.workers.dev/")).json()))[0];
 

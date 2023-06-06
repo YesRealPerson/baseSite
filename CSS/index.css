@@ -326,3 +326,7 @@ text.ContributionCalendar-label {
   font-size: 4vh;
   margin-left: 2vw;
 }
+
+.currentlyPlaying{
+  visibility: hidden;
+}

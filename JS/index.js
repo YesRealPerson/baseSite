@@ -29,7 +29,7 @@ const getCurrentGame = async () => {
     const currentGame = await (await fetch("https://currentgame.spark952.workers.dev/")).json();
     if(currentGame.status == "yes"){
         let header = document.getElementById("currentlyPlayingHeader");
-        header = innerHTML = "CURRENTLY PLAYING";
+        header.innerHTML = "CURRENTLY PLAYING";
         header.style.visibility = "visible";
         let body = document.getElementById("currentlyPlayingBody");
         body.style.visibility = "visible";

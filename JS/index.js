@@ -27,11 +27,11 @@ const getSteamActivity = async () => {
 
 const getCurrentGame = async () => {
     const currentGame = await (await fetch("https://currentgame.spark952.workers.dev/")).json();
+    let body = document.getElementById("currentlyPlayingBody");
+    let header = document.getElementById("currentlyPlayingHeader");
     if(currentGame.status == "yes"){
-        let header = document.getElementById("currentlyPlayingHeader");
         header.innerHTML = "CURRENTLY PLAYING";
         header.style.visibility = "visible";
-        let body = document.getElementById("currentlyPlayingBody");
         body.style.visibility = "visible";
         let banner = document.createElement("img");
         banner.src = currentGame.banner;
@@ -40,6 +40,9 @@ const getCurrentGame = async () => {
         name.innerHTML = currentGame.name;
         body.appendChild(banner);
         body.appendChild(name);
+    }else{
+        body.style.margin = "0px";
+        header.style.margin = "0px";
     }
 }
 

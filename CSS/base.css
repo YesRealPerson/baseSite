@@ -5,7 +5,8 @@ body{
     padding: 0;
     min-height: 100vh;
     color:black;
-    background: linear-gradient(
+    background-image: url("./frog.gif");
+    /* background: linear-gradient(
         90deg,
         rgba(255, 0, 0, 1) 0%,
         rgba(255, 154, 0, 1) 10%,
@@ -18,7 +19,7 @@ body{
         rgba(186, 12, 248, 1) 80%,
         rgba(251, 7, 217, 1) 90%,
         rgba(255, 0, 0, 1) 100%
-    );
+    ); */
 }
 
 
@@ -129,6 +130,7 @@ footer a{
 }
 
 #content > div {
+    background-color: white;
     margin-left: 5vw;
     margin-top: 5vh;
     margin-bottom: 3vh;

@@ -2,6 +2,24 @@
   text-align: left;
 }
 
+#fullscreen {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+#fullscreen *{
+  pointer-events: none;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
 :root {
   --color-calendar-graph-day-bg: #dddbdb;
   --color-calendar-graph-day-L1-bg: #39dd34;

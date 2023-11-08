@@ -1,10 +1,56 @@
 body{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: cursive;
     background-color: #fff;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     color:black;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+}
+
+
+@-webkit-keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}   
+}
+
+@-webkit-keyframes spin2 {
+    0%  {-webkit-transform: rotate(-30deg);}
+    50% {-webkit-transform: rotate(30deg);}
+    100% {-webkit-transform: rotate(-30deg);}   
+}
+
+#content > *:hover {
+    -webkit-animation: spin .5s infinite linear;
+}
+
+@-webkit-keyframes size {
+    0% {-webkit-transform: scale(.5, .5)}
+    50% {-webkit-transform: scale(1, 1); -webkit-transform: translateX(100);}
+    100% {-webkit-transform: scale(.5, .5); -webkit-transform: translateX(-100);}
+}
+
+header {
+    -webkit-animation: size 0.75s infinite linear;
+}
+
+.fire{
+    width: 25vw;
+    height: auto;
+    -webkit-animation: spin2 .5s infinite linear;
 }
 
 header{

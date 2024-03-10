@@ -1,0 +1,234 @@
+body {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 200;
+    font-size: 20px;
+    padding: 30px;
+    color: white;
+}
+
+body * {
+    overscroll-behavior: none;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    height: 120px;
+    font-weight: 450;
+    font-size: 50px;
+    padding: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
+    color: white;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(15, 15, 15, 1) 0%, rgba(15, 15, 15, 1) 5%, rgba(15, 15, 15, 0) 100%);
+}
+
+#header {
+    margin-left: 75px;
+}
+
+h3 {
+    font-weight: 355;
+    font-size: 30px;
+    padding: 10px;
+    margin: 0;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    display: table;
+    border-bottom: 1px white solid;
+}
+
+canvas {
+    overflow: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    z-index: 0;
+    top: 75px;
+    left: 0;
+    background-color: white;
+}
+
+#title {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 300;
+    color: white;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(15, 15, 15, 1) 100%);
+}
+
+content {
+    position: absolute;
+    display: block;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    width: 100%;
+    top: 100vh;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0px, rgba(15, 15, 15, 1) 150px, rgba(15, 15, 15, 1) 100%);
+}
+
+content>div {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+a:link,
+a:visited {
+    color: turquoise;
+    text-decoration: none;
+}
+
+a:hover {
+    color: darkturquoise;
+    text-decoration: none;
+}
+
+#profile {
+    width: 500px;
+    height: 250px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+#profile * {
+    color: rgb(230, 230, 230);
+    font-family: "Motiva Sans", Sans-serif;
+}
+
+#profile * video {
+    height: auto;
+    width: 100%;
+}
+
+#nameIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25px;
+}
+
+#nameIcon>* img {
+    width: 90px;
+    height: auto;
+}
+
+#avatarOuter {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+#avatarOuter img {
+    width: 110px;
+    height: auto;
+}
+
+#name {
+    font-size: 30px;
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+#tags {
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    column-gap: 5px;
+    align-items: left;
+    font-size: 20px;
+}
+
+#tags>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#tags>div> :first-child {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#level {
+    border: 2px solid rgb(7, 119, 7);
+    border-radius: 50%;
+}
+
+#level> :first-child {
+    margin-bottom: 3px;
+}
+
+#ghProfile> :first-child {
+    display: flex;
+    align-items: center;
+}
+
+#profilePicture {
+    height: 10vh;
+    border-radius: 100%;
+}
+
+#profileName {
+    font-size: 4vh;
+    margin-left: 2vw;
+}
+
+.currentlyPlaying {
+    visibility: hidden;
+}
+
+.game img {
+    width: auto;
+    height: 12vh;
+}
+
+.game a {
+    margin-left: 2vw;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+header *{
+    color:white;
+}

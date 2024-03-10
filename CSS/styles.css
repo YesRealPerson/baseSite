@@ -122,6 +122,7 @@ a:hover {
 
 #nameIcon {
     position: absolute;
+    z-index: 51;
     top: 10px;
     left: 10px;
     margin: 0;
@@ -133,6 +134,7 @@ a:hover {
 }
 
 #nameIcon>* img {
+    z-index: 52;
     width: 90px;
     height: auto;
 }
@@ -147,6 +149,8 @@ a:hover {
 }
 
 #avatarOuter img {
+    position:absolute;
+    z-index: 51;
     width: 110px;
     height: auto;
 }
@@ -159,6 +163,7 @@ a:hover {
 
 #tags {
     position: absolute;
+    z-index: 51;
     top: 120px;
     left: 10px;
     margin: 0;
@@ -231,4 +236,14 @@ a:hover {
 }
 header *{
     color:white;
+}
+#blur{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    height: 65%;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0,0,0,0.25);
+    z-index: 1;
 }

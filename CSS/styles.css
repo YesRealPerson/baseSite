@@ -207,13 +207,12 @@ a:hover {
 }
 
 #profilePicture {
-    height: 10vh;
+    height: 70px;
     border-radius: 100%;
 }
 
 #profileName {
-    font-size: 4vh;
-    margin-left: 2vw;
+    margin-left: 25px;
 }
 
 .currentlyPlaying {
@@ -221,8 +220,8 @@ a:hover {
 }
 
 .game img {
-    width: auto;
-    height: 12vh;
+    width: 200px;
+    height: auto;
 }
 
 .game a {

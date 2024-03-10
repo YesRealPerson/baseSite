@@ -2,7 +2,7 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext('2d');
 let stars = [];
 let FPS = 15;
-let mouse = {x: 0,y: 0};
+let mouse = {x: -1,y: -1};
 let maxSpeed = window.innerWidth*window.innerHeight / 300000;
 let minSpeed = 0.1*maxSpeed;
 let lineColor = `rgb(${Math.random()*255+1},${Math.random()*255+1},${Math.random()*255+1})`
@@ -72,7 +72,7 @@ function draw() {
     ctx.beginPath();
     var starI = stars[i];
     ctx.moveTo(starI.x, starI.y);
-    if (distance(mouse, starI) < 250) {
+    if (distance(mouse, starI) < 250 && mouse.x > 0 && mouse.y > 0) {
       ctx.lineTo(mouse.x, mouse.y);
       ctx.lineWidth = Math.random()*3+2;
       ctx.strokeStyle = lineColor;

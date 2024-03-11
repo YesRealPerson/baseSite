@@ -72,7 +72,7 @@ function draw() {
     ctx.beginPath();
     var starI = stars[i];
     ctx.moveTo(starI.x, starI.y);
-    if (distance(mouse, starI) < 250 && mouse.x > 0 && mouse.y > 0) {
+    if (distance(mouse, starI) < 250 && mouse.x > 0 && mouse.x < canvas.width && mouse.y > 0 && mouse.y < canvas.height) {
       ctx.lineTo(mouse.x, mouse.y);
       ctx.lineWidth = Math.random()*3+2;
       ctx.strokeStyle = lineColor;

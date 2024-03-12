@@ -70,7 +70,7 @@ canvas {
     font-weight: 300;
     color: white;
     background: rgb(0, 0, 0);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(15, 15, 15, 1) 100%);
+    background: linear-gradient(180deg, rgba(15,15,15, 0) 0%, rgba(15,15,15, 0) 25%, rgba(15, 15, 15, 1) 100%);
 }
 
 content {
@@ -81,9 +81,9 @@ content {
     left: 0;
     width: 100%;
     top: 100vh;
-    padding-top: 150px;
+    padding-top: 325px;
     padding-bottom: 50px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0px, rgba(15, 15, 15, 1) 150px, rgba(15, 15, 15, 1) 100%);
+    background: linear-gradient(180deg, rgba(15, 15, 15, 0) 0px, rgba(15, 15, 15, 1) 300px, rgba(15, 15, 15, 1) 100%);
 }
 
 content>div {
@@ -243,16 +243,20 @@ header *{
     height: 65%;
     width: 100%;
     backdrop-filter: blur(5px);
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(15,15,15,0.25);
     z-index: 1;
 }
-.gallery > img{
+.gallery .photo > img{
     height: 50vh;
     width: auto;
-    border: 2px white solid;
-    /* box-shadow: 0 0 15px 3px white; */
+    border: 2px rgb(150, 150, 150) solid;
     margin: 25px;
-    /* border-radius: 25px; */
+}
+.photo{
+    display: inline-flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
 }
 #bigImage{
     display: flex;
@@ -267,8 +271,19 @@ header *{
     height: 100%;
     background-color: rgba(0,0,0,0.5);
 }
-#bigImageClick{
-    height: 90vh;
+@media screen and (orientation:portrait) {
+    #bigImageClick{
+        width: 80vw;
+        border-radius: 5vh;
+        box-shadow: 0 0 5vh 1vh rgb(150, 150, 150);
+    }
+}
+@media screen and (orientation:landscape) {
+    #bigImageClick{
+        height: 80vh;
+        border-radius: 5vh;
+        box-shadow: 0 1vh 5vh 1vh rgb(150, 150, 150);
+    }
 }
 nav{
     font-size: 35px;

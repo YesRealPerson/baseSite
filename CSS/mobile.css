@@ -34,3 +34,9 @@ nav{
 .game img{
     width:100%;
 }
+.gallery{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

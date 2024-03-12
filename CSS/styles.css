@@ -294,3 +294,12 @@ nav{
 #content2{
     margin-top: 170px;
 }
+#searchBox{
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+    background-color: rgba(15,15,15,0.25);
+    color: white;
+    border: 1px white solid;
+    padding-left: 25px;
+}

@@ -10,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
     <link href="./CSS/styles.css" rel="stylesheet">
+    <script src="./JS/blog.js" defer></script>
 </head>
 
 <body style="background-color: rgb(15,15,15)">
@@ -17,59 +18,74 @@
         <a href="./index.html"><span id="header"></span></a>
         <nav><a href="./index.html">Home</a> | <a href="./cats.html">Cats</a> | <a href="blog.html">Blog</a></nav>
     </header>
-        <div id="content2">
-            <h3>3/12/24</h3>
-            I started playing the game <i>Slave Zero X</i> yesterday, it's pretty fun. 
-            I've never been very good at keeping up and inputting combos in fighting games and I guess that always led to me quickly abandoning them. 
-            The combos in <i>Slave Zero X</i> are as difficult as any other fighting game for me but I've enjoyed the learning curve more.
-            I feel like the game being a single-player PVE game allows for this as I am not immediately stomped on by other players and I don't feel that there's anything on the line when I lose.
-            Playing challenging single-player or PVE games have really been my joy for the past year. 
-            I've found that PVP games give too much pressure to perform and too much fustration when your teammates don't perform.
-            I quit most PVP games such as <i>Overwatch</i> and <i>League of Legends</i> (I would've quit anways with Vanguard being added soon), I don't think I would go back to either unless a friend asks me to.
-            However, I still ocassionally enjoy <i>Destiny 2</i> PVP, I feel it's generally less personal (ignoring the comments under my Steam profile), you just go in, get a kill, die, repeat.
-            Maybe I'll post something else when I finish <i>Slave Zero X</i> but for now the combat and style of the game is great. 
+    <div id="content2">
+        <h3>Search</h3>
+        <input id="searchBox" type="text" placeholder="Search for a previous entry">
+        <br><br><br>
+        <div>
+            <h3><span class="date">3/12/24</span> | <span class="blogTitle">Playing a New Game</span></h3>
+            I started playing the game <i>Slave Zero X</i> yesterday, it's pretty fun.
+            I've never been very good at keeping up and inputting combos in fighting games and I guess that always led
+            to me quickly abandoning them.
+            The combos in <i>Slave Zero X</i> are as difficult as any other fighting game for me but I've enjoyed the
+            learning curve more.
+            I feel like the game being a single-player PVE game allows for this as I am not immediately stomped on by
+            other players and I don't feel that there's anything on the line when I lose.
+            Playing challenging single-player or PVE games have really been my joy for the past year.
+            I've found that PVP games give too much pressure to perform and too much fustration when your teammates
+            don't perform.
+            I quit most PVP games such as <i>Overwatch</i> and <i>League of Legends</i> (I would've quit anways with
+            Vanguard being added soon), I don't think I would go back to either unless a friend asks me to.
+            However, I still ocassionally enjoy <i>Destiny 2</i> PVP, I feel it's generally less personal (ignoring the
+            comments under my Steam profile), you just go in, get a kill, die, repeat.
+            Maybe I'll post something else when I finish <i>Slave Zero X</i> but for now the combat and style of the
+            game is great.
             I just wish there was more enemy variety and less "go fight 5000 guys" as the difficulty scalar.
             <br><br><br>
-            <h3>3/10/24</h3>
+        </div>
+        <div>
+            <h3><span class="date">3/10/24</span> | <span class="blogTitle">Initial Commit</span></h3>
             No clue what to write here, but this version of the site has gone live.<br><br>Yay?
             <br><br><br>
-            <h3><a href="mailto:public@confluxes.net">CONTACT</a></h3>
-            This is my email if you have something to say. Probably won't respond, but I might read it. (Click CONTACT or use the email below)<br>public@confluxes.net
         </div>
+        <h3><a href="mailto:public@confluxes.net">CONTACT</a></h3>
+        This is my email if you have something to say. Probably won't respond, but I might read it. (Click
+        CONTACT or use the email below)<br><br>public@confluxes.net
+    </div>
 </body>
 
 <script>
     // animated stuff
-const animation = async () => {
-    // Header
-    let header = document.getElementById("header");
-    let text = ["C", "o", "n", "f", "l", "u", "x", "e", "s"];
-    let index = 0;
+    const animation = async () => {
+        // Header
+        let header = document.getElementById("header");
+        let text = ["C", "o", "n", "f", "l", "u", "x", "e", "s"];
+        let index = 0;
 
-    let cycles = 0;
-    while (true) {
-        text[index] = text[index].toLowerCase();
-        if (++index == text.length) {
-            index = 0;
+        let cycles = 0;
+        while (true) {
+            text[index] = text[index].toLowerCase();
+            if (++index == text.length) {
+                index = 0;
+            }
+            text[index] = text[index].toUpperCase();
+            header.innerText = text.join("");
+
+            await new Promise(r => setTimeout(r, 150));
+            cycles++;
         }
-        text[index] = text[index].toUpperCase();
-        header.innerText = text.join("");
-
-        await new Promise(r => setTimeout(r, 150));
-        cycles++;
     }
-}
-animation();
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    let link = document.createElement("link");
-    console.log("mobile")
-    link.href = "./CSS/mobile.css";
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    document.getElementsByTagName("head")[0].appendChild(link);
-}else{
-    console.log("desktop");
-}
+    animation();
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        let link = document.createElement("link");
+        console.log("mobile")
+        link.href = "./CSS/mobile.css";
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    } else {
+        console.log("desktop");
+    }
 </script>
 
 </html>

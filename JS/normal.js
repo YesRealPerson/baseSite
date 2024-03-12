@@ -8,15 +8,17 @@ const getSteamActivity = async () => {
         outer.className = "game";
 
         let img = document.createElement("img");
-        img.src = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + activity[i].appid + "/capsule_231x87.jpg?t=1684872853"
+        img.src = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + activity[i].appid + "/capsule_231x87.jpg"
         outer.appendChild(img);
 
         let name = document.createElement("a");
         name.href = "https://store.steampowered.com/app/" + activity[i].appid;
-        name.innerHTML = activity[i].name + "<br> Time Played in the Past 2 Weeks: " + recentTime + "<br> Total Time Played: " + allTime;
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            name.innerHTML = activity[i].name + "<br> Past 2 Weeks: " + recentTime + "<br> Total: " + allTime;
+        }else{
+            name.innerHTML = activity[i].name + "<br> Time Played in the Past 2 Weeks: " + recentTime + "<br> Total Time Played: " + allTime;
+        }
         outer.appendChild(name);
-
-
         document.getElementById("games").appendChild(outer);
     }
 }

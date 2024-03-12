@@ -28,3 +28,9 @@ nav{
 #content2{
     margin-top: 250px;
 }
+.game{
+    flex-direction: column;
+}
+.game img{
+    width:100%;
+}

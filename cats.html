@@ -17,7 +17,7 @@
         <a href="./index.html"><span id="header"></span></a>
         <nav><a href="./index.html">Home</a> | <a href="./cats.html">Cats</a> | <a href="blog.html">Blog</a></nav>
     </header>
-        <div style="margin-top: 170px;">
+        <div id="content2">
             <div id="bigImage">
                 <img id="bigImageClick">
             </div>
@@ -105,6 +105,16 @@ const animation = async () => {
     }
 }
 animation();
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    let link = document.createElement("link");
+    console.log("mobile")
+    link.href = "./CSS/mobile.css";
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    document.getElementsByTagName("head")[0].appendChild(link);
+}else{
+    console.log("desktop");
+}
 </script>
 <script src="./JS/gallery.js"></script>
 </html>

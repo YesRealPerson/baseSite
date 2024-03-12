@@ -1,0 +1,30 @@
+body{
+    font-size: 40px;
+}
+h3{
+    font-size: 60px;
+}
+header{
+    font-size: 80px;
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+    align-items: start;
+    justify-content: start;
+    margin-left: 5px;
+}
+#header{
+    margin-left: 0;
+}
+nav{
+    font-size: 50px;
+    position: relative;
+    right: 0;
+}
+.gallery .photo > img{
+    height: auto;
+    width: 70vw;
+}
+#content2{
+    margin-top: 250px;
+}

@@ -257,6 +257,7 @@ header *{
     position: relative;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 #bigImage{
     display: flex;
@@ -289,4 +290,7 @@ nav{
     font-size: 35px;
     position: absolute;
     right: 70px;
+}
+#content2{
+    margin-top: 170px;
 }

@@ -127,7 +127,7 @@ const animation = async () => {
             // document.getElementById("title").innerHTML = titles[Math.floor(Math.random()*titles.length)];
             cycles = 0;
         }
-        document.getElementById("title").innerHTML = titles[Math.floor(Math.random()*titles.length)];
+        document.getElementById("title").innerHTML = titles[Math.floor(Math.random() * titles.length)];
         text[index] = text[index].toLowerCase();
         if (++index == text.length) {
             index = 0;

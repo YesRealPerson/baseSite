@@ -2,7 +2,7 @@ body{
     font-size: 40px;
 }
 h3{
-    font-size: 60px;
+    font-size: 4vw;
 }
 header{
     font-size: 80px;
@@ -39,4 +39,22 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#searchBox{
+    width: 90%;
+    font-size: 40px;
+    height: 60px;
+}
+.blogImages{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 20vh;
+}
+.blogImages > img{
+    position: relative;
+    height: 50%;
+    border: 2px rgb(150, 150, 150) solid;
+    margin: 2px;
 }

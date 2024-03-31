@@ -331,3 +331,7 @@ nav{
     width: auto;
     border: 2px rgb(150, 150, 150) solid;
 }
+.markdown{
+    border: 1px white solid;
+    padding: 5px;
+}

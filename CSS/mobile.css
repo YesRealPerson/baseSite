@@ -58,3 +58,7 @@ nav{
     border: 2px rgb(150, 150, 150) solid;
     margin: 2px;
 }
+#back{
+    width: 20vw;
+    font-size: 3vw;
+}

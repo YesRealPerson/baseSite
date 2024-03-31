@@ -2,6 +2,7 @@ let list = document.getElementById("projects");
 
 const start = async () => {
     let response = await fetch("https://repos.spark952.workers.dev/");
+    list.innerHTML = "";
     const data = await response.json();
     console.log(data);
     for(let i = 0; i < data.length; i++){

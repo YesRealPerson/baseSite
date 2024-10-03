@@ -105,6 +105,35 @@ const getGitHubActivity = async () => {
     console.log(final);
     document.getElementById("latestActivity").innerHTML = final;
 }
+
+const getLatestMusic = async () => {
+    const latest = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json())).recenttracks.track; 
+    const list = document.getElementById("music");
+    let limit = latest.length;
+    if(limit > 5){
+        limit = 5;
+    }
+    for(let i = 0; i < limit; i++){
+        let song = latest[i];
+        let element = document.createElement("div");
+        element.className = "game";
+
+        let albumCover = document.createElement("img");
+        albumCover.src = song.image[2]["#text"];
+        element.appendChild(albumCover);
+
+        let info = document.createElement("a");
+        info.href = song.url;
+        info.innerHTML = "";
+        if(i==0 && song["@attr"] && song["@attr"].nowplaying){
+            info.innerHTML = "<b>Currently playing!</b><br><br>";
+        }
+        info.innerHTML += `${song.name}<br>by: ${song.artist["#text"]}<br>album: ${song.album["#text"]}`;
+        element.appendChild(info);
+
+        list.appendChild(element);
+    }
+}
 // animated stuff
 const animation = async () => {
     // Header
@@ -145,3 +174,4 @@ animation();
 getSteamActivity();
 getCurrentGame();
 getGitHubActivity();
+getLatestMusic();

@@ -233,6 +233,20 @@ a:hover {
     align-items: center;
     margin-bottom: 2vh;
 }
+.music img {
+    width: 200px;
+    height: auto;
+}
+
+.music a {
+    margin-left: 2vw;
+}
+
+.music {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
 header *{
     color:white;
 }

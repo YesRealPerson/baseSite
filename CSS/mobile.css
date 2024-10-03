@@ -34,6 +34,13 @@ nav{
 .game img{
     width:100%;
 }
+.music{
+    text-align: left;
+    flex-direction: column;
+}
+.music img {
+    width: 50%;
+}
 .gallery{
     display: flex;
     flex-direction: column;

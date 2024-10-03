@@ -107,19 +107,20 @@ const getGitHubActivity = async () => {
 }
 
 const getLatestMusic = async () => {
-    const latest = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json())).recenttracks.track; 
+    const response = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json())); 
+    const latest = response.recent.recenttracks.track;
     const list = document.getElementById("music");
-    let limit = latest.length;
-    if(limit > 5){
-        limit = 5;
-    }
-    for(let i = 0; i < limit; i++){
+    const topList = document.getElementById("topMusic");
+    for(let i = 0; i < latest.length; i++){
         let song = latest[i];
         let element = document.createElement("div");
-        element.className = "game";
+        element.className = "music";
 
         let albumCover = document.createElement("img");
-        albumCover.src = song.image[2]["#text"];
+        albumCover.src = song.image[3]["#text"];
+        if(albumCover.src == ""){
+            albumCover.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
+        }
         element.appendChild(albumCover);
 
         let info = document.createElement("a");
@@ -128,10 +129,40 @@ const getLatestMusic = async () => {
         if(i==0 && song["@attr"] && song["@attr"].nowplaying){
             info.innerHTML = "<b>Currently playing!</b><br><br>";
         }
-        info.innerHTML += `${song.name}<br>by: ${song.artist["#text"]}<br>album: ${song.album["#text"]}`;
+        info.innerHTML += `${song.name}`;
+        if(song.artist["#text"]){
+            info.innerHTML += `<br>By: ${song.artist["#text"]}`;
+        }
+        if(song.album["#text"]){
+            info.innerHTML += `<br>Album: ${song.album["#text"]}`;
+        }
         element.appendChild(info);
 
         list.appendChild(element);
+    }
+
+    const top = response.top.toptracks.track;
+    const places = ["First", "Second", "Third"]
+    for(let i = 0; i < 3; i++){
+        let song = top[i];
+        let element = document.createElement("div");
+        element.className = "music";
+
+        let albumCover = document.createElement("img");
+        albumCover.src = song.image[3]["#text"];
+        console.log(song.image[3]["#text"])
+        element.appendChild(albumCover);
+
+        let info = document.createElement("a");
+        info.href = song.url;
+        info.innerHTML = "";
+        info.innerHTML += `${places[i]} Place!<br>Played ${song.playcount} Times!<br><br>${song.name}`;
+        if(song.artist.name){
+            info.innerHTML += `<br>By: ${song.artist.name}`;
+        }
+        element.appendChild(info);
+
+        topList.appendChild(element);
     }
 }
 // animated stuff

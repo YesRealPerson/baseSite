@@ -102,7 +102,6 @@ const getGitHubActivity = async () => {
             final = "Released  repo: <a href=\"https://github.com/yesrealperson/" + repo + "\">" + repo + "</a><br>Message: " + message;
             break;
     }
-    console.log(final);
     document.getElementById("latestActivity").innerHTML = final;
 }
 
@@ -150,7 +149,6 @@ const getLatestMusic = async () => {
 
         let albumCover = document.createElement("img");
         albumCover.src = song.image[3]["#text"];
-        console.log(song.image[3]["#text"])
         element.appendChild(albumCover);
 
         let info = document.createElement("a");

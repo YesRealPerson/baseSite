@@ -147,14 +147,20 @@ const getLatestMusic = async () => {
         let element = document.createElement("div");
         element.className = "music";
 
-        let albumCover = document.createElement("img");
-        albumCover.src = song.image[3]["#text"];
-        element.appendChild(albumCover);
+        try{
+            let albumCover = document.createElement("img");
+            albumCover.src = (await ((await fetch(`https://gettrack.spark952.workers.dev?name=${song.name}&artist=${song.artist.name}`)).json())).image; 
+            element.appendChild(albumCover);
+        }catch{
+            let albumCover = document.createElement("img");
+            albumCover.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"; 
+            element.appendChild(albumCover);
+        }
 
         let info = document.createElement("a");
         info.href = song.url;
         info.innerHTML = "";
-        info.innerHTML += `${places[i]} Place!<br>Played ${song.playcount} Times!<br><br>${song.name}`;
+        info.innerHTML += `${places[i]} Place!<br>This song has been played ${song.playcount} times!<br><br>${song.name}`;
         if(song.artist.name){
             info.innerHTML += `<br>By: ${song.artist.name}`;
         }

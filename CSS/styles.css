@@ -236,6 +236,8 @@ a:hover {
 .music img {
     width: 200px;
     height: auto;
+    border: 1px solid black;
+    border-radius: 15px;
 }
 
 .music a {

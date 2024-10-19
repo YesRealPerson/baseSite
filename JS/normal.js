@@ -149,7 +149,11 @@ const getLatestMusic = async () => {
 
         try{
             let albumCover = document.createElement("img");
-            albumCover.src = (await ((await fetch(`https://gettrack.spark952.workers.dev?name=${song.name}&artist=${song.artist.name}`)).json())).image; 
+            let url = (await ((await fetch(`https://gettrack.spark952.workers.dev?name=${song.name}&artist=${song.artist.name}`)).json())).image;
+            if(!url){
+                url = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"; 
+            }
+            albumCover.src = url; 
             element.appendChild(albumCover);
         }catch{
             let albumCover = document.createElement("img");

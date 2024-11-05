@@ -56,14 +56,14 @@ nav{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80vw;
-    height: 20vh;
+    flex-direction: column;
 }
 .blogImages > img{
     position: relative;
-    height: 50%;
     border: 2px rgb(150, 150, 150) solid;
     margin: 2px;
+    width: 50%;
+    height: auto;
 }
 #back{
     width: 20vw;

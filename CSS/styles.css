@@ -342,10 +342,16 @@ nav{
     align-items: center;
     justify-content: space-around;
 }
-.blogImages > img{
-    height: 20vh;
+.blogImages > img, .captioned > img{
+    height: 20vw;
     width: auto;
     border: 2px rgb(150, 150, 150) solid;
+}
+.captioned {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 .markdown{
     border: 1px solid white;

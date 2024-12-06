@@ -58,12 +58,18 @@ nav{
     justify-content: center;
     flex-direction: column;
 }
-.blogImages > img{
+.blogImages > img, .captioned > img{
     position: relative;
     border: 2px rgb(150, 150, 150) solid;
     margin: 2px;
     width: 50%;
     height: auto;
+}
+.captioned {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 #back{
     width: 20vw;

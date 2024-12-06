@@ -19,9 +19,15 @@
         <span id="header"></span>
         <nav><a href="./index.html">Home</a> | <a href="./projects.html">Projects</a> | <a href="./cats.html">Cats</a> | <a href="blog.html">Blog</a></nav>
     </header>
-        <div style="margin-top: 170px;">
-            <h3>404</h3>
-            This page doesn't exist :(<br>Stop snooping around
+    <div id="top"></div>
+        <div id="content2">
+            <h3 style="font-size: 4rem;">404</h3>
+            <div style="font-size: 2rem;">This page doesn't exist!</div>
+            <br>
+            
+            <h1 style="width: 100%; display:  block; position: fixed; text-align: center; top: 50%; left: 0;">Redirecting you to brainrot in:<br><span id="timer"></span></h1>
+            <br>
+            <br><br><br>
         </div>
 </body>
 
@@ -46,7 +52,21 @@ const animation = async () => {
         cycles++;
     }
 }
-animation();
-</script>
+const redirect = async () =>{
+    timer = 10;
 
+    while(timer > 0){
+        document.getElementById("timer").innerText = timer;
+        await new Promise(r=> setTimeout(r, 1000));
+        timer--;
+    }
+    if(Math.random() >= 0.5){
+        window.location.replace("https://www.wikihow.com/Brainrot")
+    }else{
+        window.location.replace("https://www.confluxes.net/easteregg")
+    }
+}
+animation();
+redirect();
+</script>
 </html>

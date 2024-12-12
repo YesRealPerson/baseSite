@@ -105,12 +105,14 @@ const getGitHubActivity = async () => {
     document.getElementById("latestActivity").innerHTML = final;
 }
 
+const min = (a,b) => {if(a<b) return a; return b}
+
 const getLatestMusic = async () => {
     const response = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json())); 
     const latest = response.recent.recenttracks.track;
     const list = document.getElementById("music");
     const topList = document.getElementById("topMusic");
-    for(let i = 0; i < latest.length; i++){
+    for(let i = 0; i < min(latest.length,5); i++){
         let song = latest[i];
         let element = document.createElement("div");
         element.className = "music";
@@ -141,8 +143,8 @@ const getLatestMusic = async () => {
     }
 
     const top = response.top.toptracks.track;
-    const places = ["First", "Second", "Third"]
-    for(let i = 0; i < 3; i++){
+    const places = ["First", "Second", "Third", "Fourth", "Fifth"]
+    for(let i = 0; i < 5; i++){
         let song = top[i];
         let element = document.createElement("div");
         element.className = "music";
@@ -172,6 +174,8 @@ const getLatestMusic = async () => {
 
         topList.appendChild(element);
     }
+
+    document.getElementById("scrobbles").innerText = response.user.user.playcount;
 }
 // animated stuff
 const animation = async () => {

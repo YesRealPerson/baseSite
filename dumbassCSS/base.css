@@ -144,3 +144,15 @@ footer a{
     display: inline;
     margin-bottom: 2vh;
   }
+
+  #DVD {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  #DVD > * {
+    pointer-events: none;
+    position: absolute;
+    width: 15%;
+  }

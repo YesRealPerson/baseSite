@@ -13,9 +13,9 @@ const getSteamActivity = async () => {
 
         let name = document.createElement("a");
         name.href = "https://store.steampowered.com/app/" + activity[i].appid;
-        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             name.innerHTML = activity[i].name + "<br> Past 2 Weeks: " + recentTime + "<br> Total: " + allTime;
-        }else{
+        } else {
             name.innerHTML = activity[i].name + "<br> Time Played in the Past 2 Weeks: " + recentTime + "<br> Total Time Played: " + allTime;
         }
         outer.appendChild(name);
@@ -45,7 +45,33 @@ const getCurrentGame = async () => {
 }
 
 const getGitHubActivity = async () => {
-    const latest = (await ((await fetch("https://githubactivity.spark952.workers.dev/")).json()));
+    let latest;
+    try {
+        latest = (await ((await fetch("https://githubactivity.spark952.workers.dev/")).json()));
+    } catch {
+        latest = [
+            {
+                id: 0,
+                actor: {
+                    "id": 86257013,
+                    "login": "YesRealPerson",
+                    "display_login": "YesRealPerson",
+                    "gravatar_id": "",
+                    "url": "https://api.github.com/users/YesRealPerson",
+                    "avatar_url": "https://avatars.githubusercontent.com/u/86257013?v=4"
+                },
+                repo: {
+                    name: ""
+                },
+                payload: {
+                    commits: [{
+                        message: "No recent commits!"
+                    }]
+                },
+                created_at: (new Date()).toISOString()
+            }
+        ];
+    }
     let outer = document.createElement("div");
 
     let profilePicture = document.createElement("img");
@@ -102,24 +128,27 @@ const getGitHubActivity = async () => {
             final = "Released  repo: <a href=\"https://github.com/yesrealperson/" + repo + "\">" + repo + "</a><br>Message: " + message;
             break;
     }
+    if (final == "") {
+        final = "No recent public activity!"
+    }
     document.getElementById("latestActivity").innerHTML = final;
 }
 
-const min = (a,b) => {if(a<b) return a; return b}
+const min = (a, b) => { if (a < b) return a; return b }
 
 const getLatestMusic = async () => {
-    const response = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json())); 
+    const response = (await ((await fetch("https://broad-bar-1afc.spark952.workers.dev/")).json()));
     const latest = response.recent.recenttracks.track;
     const list = document.getElementById("music");
     const topList = document.getElementById("topMusic");
-    for(let i = 0; i < min(latest.length,5); i++){
+    for (let i = 0; i < min(latest.length, 5); i++) {
         let song = latest[i];
         let element = document.createElement("div");
         element.className = "music";
 
         let albumCover = document.createElement("img");
         albumCover.src = song.image[3]["#text"];
-        if(albumCover.src == ""){
+        if (albumCover.src == "") {
             albumCover.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
         }
         element.appendChild(albumCover);
@@ -127,14 +156,14 @@ const getLatestMusic = async () => {
         let info = document.createElement("a");
         info.href = song.url;
         info.innerHTML = "";
-        if(i==0 && song["@attr"] && song["@attr"].nowplaying){
+        if (i == 0 && song["@attr"] && song["@attr"].nowplaying) {
             info.innerHTML = "<b>Currently playing!</b><br><br>";
         }
         info.innerHTML += `${song.name}`;
-        if(song.artist["#text"]){
+        if (song.artist["#text"]) {
             info.innerHTML += `<br>By: ${song.artist["#text"]}`;
         }
-        if(song.album["#text"]){
+        if (song.album["#text"]) {
             info.innerHTML += `<br>Album: ${song.album["#text"]}`;
         }
         element.appendChild(info);
@@ -144,22 +173,22 @@ const getLatestMusic = async () => {
 
     const top = response.top.toptracks.track;
     const places = ["First", "Second", "Third", "Fourth", "Fifth"]
-    for(let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
         let song = top[i];
         let element = document.createElement("div");
         element.className = "music";
 
-        try{
+        try {
             let albumCover = document.createElement("img");
             let url = (await ((await fetch(`https://gettrack.spark952.workers.dev?name=${song.name}&artist=${song.artist.name}`)).json())).image;
-            if(!url){
-                url = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"; 
+            if (!url) {
+                url = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
             }
-            albumCover.src = url; 
+            albumCover.src = url;
             element.appendChild(albumCover);
-        }catch{
+        } catch {
             let albumCover = document.createElement("img");
-            albumCover.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"; 
+            albumCover.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
             element.appendChild(albumCover);
         }
 
@@ -167,7 +196,7 @@ const getLatestMusic = async () => {
         info.href = song.url;
         info.innerHTML = "";
         info.innerHTML += `${places[i]} Place!<br>This song has been played ${song.playcount} times!<br><br>${song.name}`;
-        if(song.artist.name){
+        if (song.artist.name) {
             info.innerHTML += `<br>By: ${song.artist.name}`;
         }
         element.appendChild(info);

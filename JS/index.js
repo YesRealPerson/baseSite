@@ -62,9 +62,10 @@ const getGitHubActivity = async () => {
     document.getElementById("latestActivity").innerHTML += "<b>Repo:</b> <a href=\"https://github.com/" + latest.repo.name + "\">" + latest.repo.name + "</a><br><b>Commit Message:</b> " + latest.payload.commits[0].message + "<br><b>Pushed At:</b> " + latest.created_at;
 }
 
-rolling = false;
+let rolling = false
+let quickscopable = true
 document.addEventListener("scroll", async (event) => {
-    if ((window.innerHeight + window.scrollY+5) >= document.body.scrollHeight && !rolling) {
+    if ((window.innerHeight + window.scrollY+5) >= document.body.scrollHeight && !rolling && quickscopable) {
         rolling = true
         document.getElementById("hitmarker").style.visibility = "hidden";
         document.getElementById("hitmarker").style.zIndex = 100;
@@ -90,7 +91,11 @@ document.addEventListener("scroll", async (event) => {
         quickscope.setAttribute("src", "")
         wow.setAttribute("src", "")
         rolling = false;
-    } else if(!rolling) {
+        quickscopable = false;
+    }else{
+        quickscopable = true;
+    }
+    if(!rolling) {
         timer = 100;
         document.getElementById("hitmarker").style.visibility = "visible";
         document.getElementById("hitmarker").style.zIndex = 101;
@@ -99,3 +104,48 @@ document.addEventListener("scroll", async (event) => {
         document.getElementById("hitmarker").style.zIndex = 100;
     }
 });
+
+let dvdRunning = false
+let dvdObjects = []
+let FPS = 30
+const runDVD = async () => {
+    dvdRunning = true
+    while(true){
+        for(let i = 0; i < dvdObjects.length; i++){
+            let dvd = dvdObjects[i];
+            let htmlObject = dvd.htmlObject;
+            htmlObject.id = "test"
+            if(!dvd.added){
+                document.getElementById("DVD").appendChild(dvd.htmlObject);
+            }
+            dvd.x = dvd.x + dvd.vx/FPS
+            dvd.y = dvd.y + dvd.vy/FPS
+            htmlObject.style.left = dvd.x + "px"
+            htmlObject.style.bottom = dvd.y + "px"
+            if(dvd.x > window.innerWidth-50 || dvd.x < -50){
+                dvd.vx *= -1;
+            }
+            if(dvd.y > window.innerHeight-50 || dvd.y < -50){
+                dvd.vy *= -1;
+            }
+        }
+        await new Promise(r => setTimeout(r, 1/FPS));
+    }
+}
+const addDVD = async () => {
+    console.log("TEST")
+    let dvd = document.createElement("img");
+    dvd.src = "./IMG/dvd.png"
+    dvdObjects.push({
+        htmlObject: dvd,
+        x: Math.random()*window.innerWidth,
+        y: Math.random()*window.innerHeight,
+        vx: window.innerWidth/20,
+        vy: window.innerWidth/20,
+        added: false
+    })
+    if(!dvdRunning){
+        runDVD();
+    }
+}
+document.getElementById("DVDBUTTON").addEventListener("click", () => {addDVD()})

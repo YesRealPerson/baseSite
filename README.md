@@ -1,3 +1,3 @@
 # My personal website
 
-Host to cats, my blog, and other stuff
+Blank for now, updates later.

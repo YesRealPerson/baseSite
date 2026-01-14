@@ -1,2 +1,5 @@
-# lol
-blank for now working on this.
+# My personal website
+
+The current iteration of my personal website.
+
+React, Tailwind, Typescript

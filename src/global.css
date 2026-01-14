@@ -1,0 +1,53 @@
+@import "tailwindcss";
+:root{
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+  font-family: 'Times New Roman', Times, serif;
+}
+.animateLink{
+  margin-right: 4vw;
+  background: 
+    linear-gradient(to right, rgba(100, 200, 200, 1), rgba(100, 200, 200, 1));
+  background-size: 0% 10%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  transition: background-size .5s;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+a:link {
+  border-bottom: solid black 1px;
+}
+a:hover{
+  background-size: 100% 10%;
+}
+
+.bgblur{
+  background-color: rgba(0,0,0,0.5);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#gallery > div{
+  display: inline-block;
+}
+
+.galleryimage {
+  height: 33vh;
+  margin: 1vh;
+  width: auto;
+}
+
+.galleryitem > div{
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.galleryitem > hr {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}

@@ -1,97 +1,14 @@
-interface size {
-    size: string,
-    "#text": string
-}
+import type {lastfmAPIResponse } from './Interfaces'
 
-interface trackTop {
-    streamable: {
-        fulltrack: string,
-        "#text": string
-    },
-    mbid: string,
-    name: string,
-    image: size[],
-    artist: {
-        url: string,
-        name: string,
-        mbid: string
-    },
-    url: string,
-    duration: string,
-    "@attr": {
-        rank: string
+const getAlbumCover = async (url:string ): Promise<string> =>  {
+    let image;
+    let blank = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
+    try{
+        image = (await ((await fetch(url)).json())).image
+    }catch{
+        image = blank
     }
-    playcount: string
-}
-
-interface trackLatest {
-    artist: {
-        mbid: string,
-        "#text": string,
-    },
-    streamable: string,
-    image: size[],
-    mbid: string,
-    album: {
-        mbid: string,
-        "#text": string,
-    },
-    name: string,
-    "@attr": {
-        nowplaying: string
-    },
-    url: string
-
-}
-
-interface lastfmAPIResponse {
-    top: {
-        toptracks: {
-            track: trackTop[],
-            "@attr": {
-                user: string,
-                totalPages: string,
-                page: string,
-                total: string,
-                perPage: string
-            }
-        }
-    },
-    recent: {
-        recenttracks: {
-            track: trackLatest[],
-            "@attr": {
-                user: string,
-                totalPages: string,
-                page: string,
-                total: string,
-                perPage: string
-            }
-        }
-    }
-    user: {
-        user: {
-            name: string,
-            age: string,
-            subscriber: string,
-            realname: string,
-            bootstrap: string,
-            playcount: string,
-            artist_count: string,
-            playlists: string,
-            track_count: string,
-            album_count: string,
-            image: size[]
-            registered: {
-                unixtime: string,
-                "#text": number
-            },
-            country: string,
-            gender: string,
-            url: string,
-            type: string
-        }
-    }
+    return image == "" ? blank : image 
 }
 
 export default async function parseLastFMAPI(response: lastfmAPIResponse) {
@@ -102,7 +19,7 @@ export default async function parseLastFMAPI(response: lastfmAPIResponse) {
             <div className="w-1">
                 {x["@attr"].rank}
             </div>
-            <img className="w-30 mx-5" src={(await ((await fetch(`https://gettrack.spark952.workers.dev?name=${x.name}&artist=${x.artist.name}`)).json())).image}></img>
+            <img className="w-30 mx-5" src={await getAlbumCover(`https://gettrack.spark952.workers.dev?name=${x.name}&artist=${x.artist.name}`)}></img>
             <div>
                 <a href={x.url} className="!p-0 animateLink">{x.name}</a><br />
                 {x.artist.name}<br />

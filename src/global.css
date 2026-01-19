@@ -18,7 +18,7 @@ h1{
   padding-right: 1vw;
 }
 
-a:link {
+a {
   border-bottom: solid black 1px;
 }
 a:hover{
@@ -30,24 +30,4 @@ a:hover{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-#gallery > div{
-  display: inline-block;
-}
-
-.galleryimage {
-  height: 33vh;
-  margin: 1vh;
-  width: auto;
-}
-
-.galleryitem > div{
-  padding-left: .5em;
-  padding-right: .5em;
-}
-
-.galleryitem > hr {
-  margin-top: .5em;
-  margin-bottom: .5em;
 }

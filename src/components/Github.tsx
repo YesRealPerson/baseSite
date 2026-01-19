@@ -1,4 +1,8 @@
-export default async function parseGithubAPI(response: Response) {
+import { FailedResponse } from "./Classes"
+export default async function parseGithubAPI(response: Response | FailedResponse) {
+    if (response instanceof FailedResponse){
+        return (<></>)
+    }
     let events
     let caught = false
     try {
@@ -40,7 +44,7 @@ export default async function parseGithubAPI(response: Response) {
                 type = item.type;
                 break
             } catch (err) {
-                console.log(err + " Going next! (update)");
+                // console.log(err + " Going next! (update)");
             }
         }
         switch (type) {

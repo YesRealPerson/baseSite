@@ -1,48 +1,49 @@
 import { useLoaderData } from "react-router-dom"
+import { tryFetch } from "./components/Classes"
 import parseGithubAPI from "./components/Github"
 import parseLastFMAPI from "./components/Lastfm"
+import type { steamGames } from "./components/Interfaces"
 
+// Loader
 export async function theGenuineArticle() {
-  const steamActivity = fetch("https://steamactivity.spark952.workers.dev/")
-  const steamGame = fetch("https://currentgame.spark952.workers.dev/")
-  const githubActivity = fetch("https://githubactivity.spark952.workers.dev/")
-  const lastfmActivity = fetch("https://broad-bar-1afc.spark952.workers.dev/")
+  const steamActivity = tryFetch("https://steamactivity.spark952.workers.dev/")
+  const steamGame = tryFetch("https://currentgame.spark952.workers.dev/")
+  const githubActivity = tryFetch("https://githubactivity.spark952.workers.dev/")
+  const lastfmActivity = tryFetch("https://broad-bar-1afc.spark952.workers.dev/")
+  let statuses = [
+    (await steamActivity).status,
+    (await steamGame).status,
+    (await githubActivity).status,
+    (await lastfmActivity).status
+  ]
   return {
     steamActivity: {
-      "status": (await steamActivity).status,
-      "response": await (await steamActivity).json()
+      "status": statuses[0],
+      "response": statuses[0] == 200 ? await (await steamActivity).json() : { message: (await steamActivity).statusText }
     },
     steamGame: {
-      "status": (await steamGame).status,
-      "response": await (await steamGame).json()
+      "status": statuses[1],
+      "response": statuses[1] == 200 ? await (await steamGame).json() : { message: (await steamGame).statusText }
     },
     githubActivity: {
-      "status": (await githubActivity).status,
-      "response": parseGithubAPI(await githubActivity)
+      "status": statuses[2],
+      "response": statuses[2] == 200 ? parseGithubAPI(await githubActivity) : { message: (await githubActivity).statusText }
     },
     lastfmActivity: {
-      "status": (await lastfmActivity).status,
-      "response": parseLastFMAPI(await (await lastfmActivity).json())
+      "status": statuses[3],
+      "response": statuses[3] == 200 ? parseLastFMAPI(await (await lastfmActivity).json()) : { message: (await lastfmActivity).statusText }
     }
   }
 }
 
-interface steamGames {
-  "appid": number,
-  "name": string,
-  "playtime_2weeks": number,
-  "playtime_forever": number,
-  "img_icon_url": string
-}
-
+// Component
 export default function Index() {
   const response = useLoaderData()
   const steamActivity = response.steamActivity
   const steamGame = response.steamGame
   const githubActivity = response.githubActivity
   const lastfmActivity = response.lastfmActivity
-
-  let steamActivityElement = (<>Steam game activity endpoint failed to respond!</>)
+  let steamActivityElement = (<>Steam game activity endpoint failed to respond!<br/>{steamActivity.response?.message}</>)
   if (steamActivity.status == 200) {
     steamActivityElement = (
       steamActivity.response.response.games.map((x: steamGames) => (
@@ -72,8 +73,6 @@ export default function Index() {
           </div>
         </div>
     )
-  }else if (steamGame.status != 200){
-    currentSteam = (<>Current Steam game endpoint failed to respond!</>)
   }
 
   return (
@@ -98,13 +97,13 @@ export default function Index() {
       <h1 className='text-2xl'>
         Github Activity
       </h1>
-      {githubActivity.status == 200 ? githubActivity.response : (<>GitHub API failed to respond!</>)}
+      {githubActivity.status == 200 ? githubActivity.response : (<>GitHub API failed to respond!<br/>{githubActivity.response?.message}</>)}
       <hr className="my-2" />
       <h1 className='text-2xl my-2'>
         Last.fm Activity
       </h1>
       Last.fm is a service to record my music listening habits since I don't use Spotify.
-      {lastfmActivity.status == 200 ? lastfmActivity.response : (<>GitHub API failed to respond!</>)}
+      {lastfmActivity.status == 200 ? lastfmActivity.response : (<><br/>Last.FM API failed to respond!<br/>{lastfmActivity.response?.message}</>)}
     </div>
   )
 }

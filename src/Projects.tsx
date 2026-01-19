@@ -1,8 +1,11 @@
 import { useLoaderData } from "react-router";
+import type { projectResponseItem } from "./components/Interfaces";
+import { tryFetch } from "./components/Classes";
 import Markdown from 'react-markdown'
 
 export async function getProjects() {
-    const response = await fetch("https://repos.spark952.workers.dev/");
+    const response = await tryFetch("https://repos.spark952.workers.dev/");
+    // const tester = await tryFetch("https://small-violet-f22c.spark952.workers.dev/") // Broken endpoint for error handling
     // await new Promise(resolve => setTimeout(resolve, 5000)); //test loader UNCOMMENT ME
     return {
         "status":response.status, 
@@ -10,18 +13,11 @@ export async function getProjects() {
     }
 }
 
-interface projectResponseItem {
-    "name": string,
-    "langauge": string,
-    "readme": string,
-    "url": string
-}
-
 export default function Projects() {
     const response = useLoaderData()
     let projectElement = (
         <div>
-            Failed to fetch from the Github API<br/><br/> If you would like contact me and attatch the following:<br/>{""+response.status}<br/>{JSON.stringify(response.data)}
+            Failed to fetch from the Github API with code {response.status}.
         </div>
     )
     if(response.status == 200){

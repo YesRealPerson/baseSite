@@ -30,7 +30,6 @@ export default function ErrorPage() {
             const refresh = (event: KeyboardEvent) => {
                 if (event.key.toLowerCase() == 'r') {
                     event.preventDefault()
-                    console.log("refresh")
                     index += 1 + Math.floor(Math.random() * (errorMessages.length - 1))
                     index = index % errorMessages.length
                     setValue(errorMessages[index])

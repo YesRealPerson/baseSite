@@ -5,7 +5,7 @@ export default function Gallery() {
         {
             src: "./IMG_3452.jpg",
             alt: "Empty benches with visible deterioration in front of an empty playground.",
-            details: [["Camera", "Canon EOS R8"]]
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/1000"], ["F-Stop", "f/2.8"], ["ISO", "400"], ["Focal Length", "90mm"]]
         },
         {
             src: "./IMG_2170.jpg",
@@ -15,7 +15,7 @@ export default function Gallery() {
         {
             src: "./IMG_3450.jpg",
             alt: "A cat staring at the camera next to an empty metal bowl and in front of a wall with peeling paint.",
-            details: [["Camera", "Canon EOS R8"]]
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/1000"], ["F-Stop", "f/2.8"], ["ISO", "400"], ["Focal Length", "185mm"]]
         },
         {
             src: "./IMG_4161.jpg",
@@ -65,7 +65,7 @@ export default function Gallery() {
         {
             src: "./IMG_3563.jpg",
             alt: "A view from a stone bridge over a rushing river leading into the woods.",
-            details: [["Camera", "Canon EOS R8"]]
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/50"], ["F-Stop", "f/22"], ["ISO", "1600"], ["Focal Length", "75mm"]]
         },
     ]
     let picturesElement = pictures.map(x => (

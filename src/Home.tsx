@@ -52,9 +52,9 @@ export default function Index() {
           <div>
             <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
             <br />
-            Time played last 2 weeks: {(Math.round(x.playtime_2weeks / 60 * 100) / 100)}
+            Time played last 2 weeks: {(Math.round(x.playtime_2weeks / 60 * 100) / 100)} hours
             <br />
-            Total time played: {(Math.round(x.playtime_forever / 60 * 100) / 100)}
+            Total time played: {(Math.round(x.playtime_forever / 60 * 100) / 100)} hours
           </div>
         </div>
       ))
@@ -82,13 +82,13 @@ export default function Index() {
       </h1>
       <p>
         This is my website, I am currently remaking it.<br /><br />
-        This version is still a work in progress but all of the functionality I want is here (although who knows if I come up with anything cool to add to the site).
+        This version is still a work in progress but all of the functionality I want is here (although who knows if I come up with anything cool to add to the site or if I forgot anything).
       </p>
       <hr className="my-2" />
       <h1 className='text-2xl'>
         Steam Activity
       </h1>
-      I enjoy playing video games. Here is some of the ones of played most recently on my steam account.<br/><br/>
+      I enjoy playing video games. Here is some of the ones of played most recently on my Steam account.<br/><br/>
       {currentSteam}
       {steamActivityElement}
       <hr className="my-2" />

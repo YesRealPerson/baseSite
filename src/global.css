@@ -7,15 +7,15 @@ h1{
   font-family: 'Times New Roman', Times, serif;
 }
 .animateLink{
-  margin-right: 4vw;
+  margin-right: 4em;
   background: 
     linear-gradient(to right, rgba(100, 200, 200, 1), rgba(100, 200, 200, 1));
   background-size: 0% 10%;
   background-position: 50% 100%;
   background-repeat: no-repeat;
   transition: background-size .5s;
-  padding-left: 1vw;
-  padding-right: 1vw;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 a {

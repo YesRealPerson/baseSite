@@ -1,3 +1,5 @@
+import type { JSX } from "react"
+
 export interface size {
     size: string,
     "#text": string
@@ -19,6 +21,15 @@ export interface projectResponseItem {
     "langauge": string,
     "readme": string,
     "url": string
+}
+
+// BLOG
+
+export interface BlogEntryType {
+    date: string,
+    title: string,
+    subtitle?: string,
+    children: JSX.Element
 }
 
 // STEAM

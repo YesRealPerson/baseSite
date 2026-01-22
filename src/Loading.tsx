@@ -11,7 +11,6 @@ export default function Loading() {
                     <Link className="animateLink" to="/">Home [×]</Link>
                     <Link className="animateLink" to="/pictures">Pictures [×]</Link>
                     <Link className="animateLink" to="/projects">Projects [×]</Link>
-                    <Link className="animateLink" to="/blog">Blog [×]</Link>
                 </nav>
             </header>
             <main className="mt-20 m-5 ">

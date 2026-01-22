@@ -9,6 +9,7 @@ import Blog from './Blog.tsx'
 import Error from './Error.tsx'
 import Layout from './Layout.tsx'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom'
+import 'katex/dist/katex.min.css';
 const router = createBrowserRouter([
   {
     path: "/",

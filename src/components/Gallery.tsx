@@ -18,6 +18,11 @@ export default function Gallery() {
             details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/1000"], ["F-Stop", "f/2.8"], ["ISO", "400"], ["Focal Length", "185mm"]]
         },
         {
+            src: "./IMG_4670.jpg",
+            alt: "A squirrel looking up with its paw on its chest.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/400"], ["F-Stop", "f/10"], ["ISO", "800"], ["Focal Length", "100mm"]]
+        },
+        {
             src: "./IMG_4161.jpg",
             alt: "A small bird hiding under a tree surrounded by grass.",
             details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/500"], ["F-Stop", "f/2.8"], ["ISO", "2500"], ["Focal Length", "200mm"]]
@@ -66,6 +71,41 @@ export default function Gallery() {
             src: "./IMG_3563.jpg",
             alt: "A view from a stone bridge over a rushing river leading into the woods.",
             details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/50"], ["F-Stop", "f/22"], ["ISO", "1600"], ["Focal Length", "75mm"]]
+        },
+        {
+            src: "./IMG_0185.jpg",
+            alt: "A car driving by a building under construction at night.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/5"], ["F-Stop", "f/11"], ["ISO", "5000"], ["Focal Length", "35mm"]]
+        },
+        {
+            src: "./IMG_0265.jpg",
+            alt: "A wooden bridge amongst trees in front of a building and lawn.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/80"], ["F-Stop", "f/6.3"], ["ISO", "1600"], ["Focal Length", "50mm"]]
+        },
+        {
+            src: "./IMG_0292.jpg",
+            alt: "People walking and playing chess at the intersection of Bancroft and Telegraph in Berkeley, CA.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/3"], ["F-Stop", "f/14"], ["ISO", "2000"], ["Focal Length", "32mm"]]
+        },
+        {
+            src: "./IMG_4778.jpg",
+            alt: "Rasputin Music and Copy Central along Telegraph Avenue in Berkeley, CA at night.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/25"], ["F-Stop", "f/7.1"], ["ISO", "1600"], ["Focal Length", "70mm"]]
+        },
+        {
+            src: "./IMG_4532.jpg",
+            alt: "People walking and tabling along Upper Sproul Plaza at UC Berkeley.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/400"], ["F-Stop", "f/10"], ["ISO", "800"], ["Focal Length", "100mm"]]
+        },
+        {
+            src: "./IMG_4586.jpg",
+            alt: "A squirrel peeking out from behind some ferns in front of a tree.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/25"], ["F-Stop", "f/7.1"], ["ISO", "1600"], ["Focal Length", "70mm"]]
+        },
+        {
+            src: "./IMG_4511.jpg",
+            alt: "A small bird standing on the ground.",
+            details: [["Camera", "Canon EOS R8"], ["Shutter Speed", "1/400"], ["F-Stop", "f/10"], ["ISO", "800"], ["Focal Length", "100mm"]]
         },
     ]
     let picturesElement = pictures.map(x => (

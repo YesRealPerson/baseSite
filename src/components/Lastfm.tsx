@@ -12,6 +12,25 @@ const getAlbumCover = async (url:string ): Promise<string> =>  {
 }
 
 export default async function parseLastFMAPI(response: lastfmAPIResponse) {
+    // Account
+    const account = response.user.user
+    const accountElement = (
+    <div className="flex flex-row items-center text-center">
+        <img className="w-30 mx-5" src={account.image[3]['#text']}/>
+        <div className=' mx-5'>
+            <a className='!p-0 !m-0 animateLink' href={account.url}>{account.name}</a><br/>
+            {account.playcount} recorded scrobbles!
+        </div>
+        <div>
+            <div>
+                
+                Consisting of...<br/>
+                {account.album_count} different albums<br/>
+                {account.artist_count} different artists<br/>
+                {account.track_count} different songs
+            </div>
+        </div>
+    </div>)
     // Top songs
     const top = response.top
     const topElement = top.toptracks.track.map(async (x) => (
@@ -28,6 +47,7 @@ export default async function parseLastFMAPI(response: lastfmAPIResponse) {
         </div>
     ))
 
+    // Recent songs
     const recent = response.recent
     const recentElement = recent.recenttracks.track.map(async (x) => (
         <div className="flex flex-row items-center">
@@ -42,6 +62,10 @@ export default async function parseLastFMAPI(response: lastfmAPIResponse) {
     ))
     return (
         <div>
+            <div className="my-5">
+                My Last.fm Profile:<br />
+                {accountElement}
+            </div>
             <div className="my-5">
                 Most listens for the past week:<br />
                 {topElement}

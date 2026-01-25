@@ -1,4 +1,5 @@
 import { Link, useNavigation } from "react-router-dom";
+import HomeStatic from "./components/HomeStatic";
 
 export default function Loading() {
     const navigation = useNavigation();
@@ -11,6 +12,7 @@ export default function Loading() {
                     <Link className="animateLink" to="/">Home [×]</Link>
                     <Link className="animateLink" to="/pictures">Pictures [×]</Link>
                     <Link className="animateLink" to="/projects">Projects [×]</Link>
+                    <Link className="animateLink" to="/blog">Blog [×]</Link>
                 </nav>
             </header>
             <main className="mt-20 m-5 ">
@@ -22,16 +24,7 @@ export default function Loading() {
                     </div>
                 </div>
                 <div>
-                    <h1 className='text-4xl'>
-                        Hello!
-                    </h1>
-                    <p>
-                        This is my website, I am currently remaking it.<br /><br />
-                        This version is still a work in progress but all of the functionality I want is here (although who knows if I come up with anything cool to add to the site).
-                        <br />
-                        I plan on making various styles for the home page in the near future but for now you get the nice and simple one.
-                    </p>
-                    <hr className="my-2" />
+                    <HomeStatic />
                     <div className="w-full text-center text-2xl">
                         Loading dynamic content...
                     </div>

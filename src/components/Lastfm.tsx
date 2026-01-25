@@ -1,36 +1,45 @@
-import type {lastfmAPIResponse } from './Interfaces'
+import type { lastfmAPIResponse } from './Interfaces'
 
-const getAlbumCover = async (url:string ): Promise<string> =>  {
+const getAlbumCover = async (url: string): Promise<string> => {
     let image;
     let blank = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
-    try{
+    try {
         image = (await ((await fetch(url)).json())).image
-    }catch{
+    } catch {
         image = blank
     }
-    return image == "" ? blank : image 
+    return image == "" ? blank : image
 }
 
 export default async function parseLastFMAPI(response: lastfmAPIResponse) {
     // Account
     const account = response.user.user
-    const accountElement = (
-    <div className="flex flex-row items-center text-center">
-        <img className="w-30 mx-5" src={account.image[3]['#text']}/>
-        <div className=' mx-5'>
-            <a className='!p-0 !m-0 animateLink' href={account.url}>{account.name}</a><br/>
-            {account.playcount} recorded scrobbles!
-        </div>
-        <div>
-            <div>
-                
-                Consisting of...<br/>
-                {account.album_count} different albums<br/>
-                {account.artist_count} different artists<br/>
-                {account.track_count} different songs
+    const accountElement = (<>
+        <div className="flex flex-row items-center text-center">
+            <img className="w-30 mx-5" src={account.image[3]['#text']} />
+            <div className=' mx-5'>
+                <a className='!p-0 !m-0 animateLink' href={account.url}>{account.name}</a><br />
+                {account.playcount} recorded scrobbles!
+            </div>
+            <div className='hidden md:block'>
+                <div>
+
+                    Consisting of...<br />
+                    {account.album_count} different albums<br />
+                    {account.artist_count} different artists<br />
+                    {account.track_count} different songs
+                </div>
             </div>
         </div>
-    </div>)
+        <div className='block w-full flex items-center justify-center mt-5 md:hidden'>
+            <div>
+
+                Consisting of...<br />
+                {account.album_count} different albums<br />
+                {account.artist_count} different artists<br />
+                {account.track_count} different songs
+            </div>
+        </div></>)
     // Top songs
     const top = response.top
     const topElement = top.toptracks.track.map(async (x) => (

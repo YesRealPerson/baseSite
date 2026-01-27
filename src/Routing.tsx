@@ -13,7 +13,7 @@ import 'katex/dist/katex.min.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <Layout style={0}/>,
     errorElement: <Error />,
     hydrateFallbackElement: <Loading />,
     children: [
@@ -33,6 +33,32 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
+        element: <Blog />,
+      }
+    ]
+  },
+  {
+    path: "/modern",
+    element: <Layout style={1}/>,
+    errorElement: <Error />,
+    hydrateFallbackElement: <Loading />,
+    children: [
+      {
+        path: "/modern",
+        element: <Index />,
+        loader: theGenuineArticle
+      },
+      {
+        path: "/modern/projects",
+        element: <Projects />,
+        loader: getProjects
+      },
+      {
+        path: "/modern/pictures",
+        element: <Photography />,
+      },
+      {
+        path: "/modern/blog",
         element: <Blog />,
       }
     ]

@@ -1,22 +1,25 @@
-import { Link, Outlet, useNavigation } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import "./components/loading.css"
+import Header from "./components/Header";
+import type { StyleProps } from "./components/Interfaces";
 
-export default function Layout() {
+const styles = [
+    {
+        MainStyle: "mt-5 m-5",
+        OutletStyle: ""
+    },
+    {
+        MainStyle: "w-full flex justify-center absolute z-55 bg-black",
+        OutletStyle: "max-w-[2000px] w-full bg-white"
+    }
+]
+
+export default function Layout({ style }: StyleProps) {
     const navigation = useNavigation();
     return (
         <>
-            <header className="font-serif flex flex-row items-center mt-5 mx-5 justify-between lg:justify-start">
-                <div>
-                    <img src="./favicon.ico" className='h-full max-w-[30vw] block left-5 top-2 md:h-20' alt="" />
-                </div>
-                <nav className="flex flex-col top-3 left-20 text-2xl text-right lg:text-left lg:w-[75vw] lg:flex-row">
-                    <Link className="animateLink md:px-5 md:mx-5" to="/">Home [×]</Link>
-                    <Link className="animateLink md:px-5 md:mx-5" to="/pictures">Pictures [×]</Link>
-                    <Link className="animateLink md:px-5 md:mx-5" to="/projects">Projects [×]</Link>
-                    <Link className="animateLink md:px-5 md:mx-5" to="/blog">Blog [×]</Link>
-                </nav>
-            </header>
-            <main className="mt-5 m-5 ">
+            <Header style={style} />
+            <main className={styles[style].MainStyle}>
                 <div className={
                     navigation.state === "loading" ? "fixed left-0 top-0 w-screen h-screen bgblur flex justify-center items-center" : "hidden"
                 }>
@@ -24,14 +27,17 @@ export default function Layout() {
                         <div className="loader"></div>
                     </div>
                 </div>
-                <Outlet />
-            </main>
-            <footer>
-                <hr className="mt-10 mb-3" />
-                <div className="flex flex-row justify-center items-center">
-                    <a className="animateLink" href="mailto:contact@confluxes.net">contact</a>
+                <div className={styles[style].OutletStyle}>
+                    <Outlet />
+                    <footer className="mb-10">
+                        <hr className="mt-10 mb-3" />
+                        <div className="flex flex-row justify-center items-center gap-5">
+                            <a className="animateLink" href="mailto:contact@confluxes.net">contact</a>
+                            {style == 0 ? "Default" : "Modern"}
+                        </div>
+                    </footer>
                 </div>
-            </footer>
+            </main>
         </>
     )
 }

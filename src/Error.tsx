@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
+import Header from "./components/Header";
 
 export default function ErrorPage() {
     const errorMessages = [
@@ -46,16 +47,9 @@ export default function ErrorPage() {
 
     return (
         <>
-            <header className="font-serif">
-                <img src="./favicon.ico" className='w-12 absolute left-5 top-2' alt="" />
-                <nav className="absolute z-1 flex flex-row top-3 left-20 w-[75vw] text-[2vh]">
-                    <Link className="animateLink" to="/">Home [×]</Link>
-                    <Link className="animateLink" to="/pictures">Pictures [×]</Link>
-                    <Link className="animateLink" to="/projects">Projects [×]</Link>
-                </nav>
-            </header>
+            <Header />
             <main className="mt-20 m-5">
-                <div className="flex fixed top-0 left-0 z-0 w-screen h-screen justify-center items-center">
+                <div className="pointer-events-none flex fixed top-0 left-0 z-0 w-screen h-screen justify-center items-center">
                     <div className="text-center">
                         <h1 className="text-4xl">{status}</h1>
                         <br />

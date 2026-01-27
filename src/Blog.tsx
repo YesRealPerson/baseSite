@@ -44,7 +44,7 @@ export default function Blog() {
                         </i>
                         <BR />
                         I don't really know what I'll really write here from now on, maybe random thoughts, Gundams or something.
-                        <Image src="./IMG_5271.jpg" alt="Strike Freedom Gundam" details={[["Perfect Grade", ""]]}></Image>
+                        <Image src="/IMG_5271.jpg" alt="Strike Freedom Gundam" details={[["Perfect Grade", ""]]}></Image>
                         On a random note: I'm really excited for Marathon to come out March 5th.
                         I think this year I'd like to write something to this page weekly, but we'll see...
                     </div>

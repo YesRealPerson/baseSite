@@ -52,7 +52,7 @@ export default function Index() {
           <div className="flex justify-center items-center">
             <img className="mr-5 w-40 md:w-50" alt={x.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + x.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src = "./missing.jpg";
+              currentTarget.src = "/missing.jpg";
             }} />
           </div>
           <div>

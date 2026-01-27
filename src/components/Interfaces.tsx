@@ -5,6 +5,11 @@ export interface size {
     "#text": string
 }
 
+// GENERAL
+export interface StyleProps{
+    style: number
+}
+
 // PICTURES
 
 export interface ImgProps {

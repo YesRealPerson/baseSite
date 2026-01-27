@@ -1,14 +1,26 @@
 @import "tailwindcss";
-:root{
+
+:root {
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
+  --i1angle: 135deg;
+  --i2angle: 45deg;
+  --startx: 10%;
+  --starty: 80%;
+  --endx: 10%;
+  --endy: 80%;
+  --hueangle: 200deg;
+  --contrast: 120%;
+  --saturation: 130%;
 }
-h1{
+
+h1 {
   font-family: 'Times New Roman', Times, serif;
 }
-.animateLink{
-  background: 
-    linear-gradient(to right, rgba(100, 200, 200, 1), rgba(100, 200, 200, 1));
+
+.animateLink {
+  background:
+    linear-gradient(to right, rgba(83, 187, 213, 1), rgba(83, 187, 213, 1));
   background-size: 0% 10%;
   background-position: 50% 100%;
   background-repeat: no-repeat;
@@ -18,13 +30,86 @@ h1{
 a {
   border-bottom: solid black 1px;
 }
-a:hover{
+
+a:hover {
   background-size: 100% 10%;
 }
 
-.bgblur{
-  background-color: rgba(0,0,0,0.5);
+.bgblur {
+  background-color: rgba(0, 0, 0, 0.5);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.bluebg {
+  background-color: rgba(83, 187, 213, 1);
+}
+
+.bluefade {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(83, 187, 213, 1) 20vh, rgba(83, 187, 213, 1) 100%);
+}
+
+
+/* invert bullshit */
+@keyframes movemask {
+  0% {
+    mask-position: var(--startx) var(--starty);
+    mask-size: 25vw 25vw;
+    opacity: 0%;
+  }
+
+  10% {
+    mask-position: var(--startx) var(--starty);
+    mask-size: 25vw 25vw;
+    opacity: 100%;
+  }
+
+  50% {
+    mask-position: var(--endx) var(--endy);
+    mask-size: 30vw 30vw;
+  }
+
+  70% {
+    mask-position: var(--endx) var(--endy);
+    mask-size: 30vw 30vw;
+  }
+
+  100% {
+    mask-position: 35% 0%;
+    mask-size: 100% 100%;
+
+  }
+}
+
+.inverted {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  object-fit: cover;
+  pointer-events: none;
+
+  mask-image: linear-gradient(var(--i1angle), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%);
+
+  mask-repeat: no-repeat;
+}
+
+.invertAnimation {
+  animation-name: movemask;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.filter1{
+  filter: hue-rotate(var(--hueangle)) contrast(var(--contrast)) saturate(var(--saturation));
+}
+
+#in2 {
+  mask-image: linear-gradient(var(--i2angle), rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.noninverted {
+  display: block;
+  object-fit: cover;
 }

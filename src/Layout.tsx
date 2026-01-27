@@ -5,11 +5,11 @@ export default function Layout() {
     const navigation = useNavigation();
     return (
         <>
-            <header className="font-serif flex flex-row items-center mt-5 mx-5 justify-between md:justify-start">
+            <header className="font-serif flex flex-row items-center mt-5 mx-5 justify-between lg:justify-start">
                 <div>
                     <img src="./favicon.ico" className='h-full max-w-[30vw] block left-5 top-2 md:h-20' alt="" />
                 </div>
-                <nav className="flex flex-col top-3 left-20 text-2xl text-right md:text-left md:w-[75vw] md:flex-row">
+                <nav className="flex flex-col top-3 left-20 text-2xl text-right lg:text-left lg:w-[75vw] lg:flex-row">
                     <Link className="animateLink md:px-5 md:mx-5" to="/">Home [×]</Link>
                     <Link className="animateLink md:px-5 md:mx-5" to="/pictures">Pictures [×]</Link>
                     <Link className="animateLink md:px-5 md:mx-5" to="/projects">Projects [×]</Link>

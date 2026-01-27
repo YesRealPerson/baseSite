@@ -6,13 +6,15 @@ export default function Loading() {
 
     return (
         <>
-            <header className="font-serif">
-                <img src="./favicon.ico" className='w-12 absolute left-5 top-2' alt="" />
-                <nav className="absolute flex flex-row top-3 left-20 w-[75vw] text-2xl">
-                    <Link className="animateLink" to="/">Home [×]</Link>
-                    <Link className="animateLink" to="/pictures">Pictures [×]</Link>
-                    <Link className="animateLink" to="/projects">Projects [×]</Link>
-                    <Link className="animateLink" to="/blog">Blog [×]</Link>
+            <header className="font-serif flex flex-row items-center mt-5 mx-5 justify-between md:justify-start">
+                <div>
+                    <img src="./favicon.ico" className='h-full max-w-[30vw] block left-5 top-2 md:h-20' alt="" />
+                </div>
+                <nav className="flex flex-col top-3 left-20 text-2xl text-right md:text-left md:w-[75vw] md:flex-row">
+                    <Link className="animateLink md:px-5 md:mx-5" to="/">Home [×]</Link>
+                    <Link className="animateLink md:px-5 md:mx-5" to="/pictures">Pictures [×]</Link>
+                    <Link className="animateLink md:px-5 md:mx-5" to="/projects">Projects [×]</Link>
+                    <Link className="animateLink md:px-5 md:mx-5" to="/blog">Blog [×]</Link>
                 </nav>
             </header>
             <main className="mt-20 m-5 ">

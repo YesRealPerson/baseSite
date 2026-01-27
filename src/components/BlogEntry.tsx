@@ -17,7 +17,7 @@ const BlogEntry = ({ date, title, subtitle, children }: BlogEntryType) => {
                     </div>
                     {subtitleComponent}
                 </div>
-                <div className="text-xl max-w-200">
+                <div className="text-lg md:text-xl max-w-200">
                     {children}
                 </div>
             </div>

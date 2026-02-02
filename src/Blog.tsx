@@ -6,9 +6,6 @@ import type { ImgProps } from "./components/Interfaces";
 function BR() {
     return (<br className="block my-2" />)
 }
-function HR() {
-    return (<hr className="block my-2" />)
-}
 interface MathBlockProps {
     math: string,
     className?: string

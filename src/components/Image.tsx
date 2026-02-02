@@ -11,7 +11,7 @@ const Img = ({ src, alt, className, details }: ImgProps) => {
     const [large, setLarge] = useState(false)
     function enlarge() {
         if (!large) {
-            setClass("fixed top-0 left-0 flex w-screen h-screen justify-center items-center bgblur")
+            setClass("fixed z-9999 top-0 left-0 flex w-screen h-screen justify-center items-center bgblur")
             setImg(zoomClass)
             setLarge(true)
             setAlt("bg-white px-3 py-3 xl:py-7 xl:max-w-[15vw]")

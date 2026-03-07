@@ -12,6 +12,7 @@
   --hueangle: 200deg;
   --contrast: 120%;
   --saturation: 130%;
+  overscroll-behavior-y: none;
 }
 
 h1 {
@@ -102,7 +103,7 @@ a:hover {
 }
 
 .filter1{
-  filter: hue-rotate(var(--hueangle)) contrast(var(--contrast)) saturate(var(--saturation));
+  filter: hue-rotate(var(--hueangle)) contrast(var(--contrast)) saturate(var(--saturation)) brightness(250%);
 }
 
 #in2 {

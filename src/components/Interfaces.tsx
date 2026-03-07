@@ -8,6 +8,7 @@ export interface size {
 // GENERAL
 export interface StyleProps{
     style: number
+    loading?: boolean
 }
 
 // PICTURES

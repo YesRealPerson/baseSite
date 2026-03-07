@@ -22,7 +22,7 @@ const styles = [
     }
 ]
 
-export default function Header({ style }: StyleProps) {
+export default function Header({ style, loading }: StyleProps) {
     let temp = useLocation();
     let paths = temp.pathname;
     paths = paths.endsWith("/") ? paths.slice(0, -1) : paths;
@@ -72,9 +72,12 @@ export default function Header({ style }: StyleProps) {
             </div>
             {/* ICON */}
             <div className="absolute z-1000 w-full h-full top-0 left-0 flex justify-center">
-                <div className="max-w-[2000px] w-full flex items-center justify-center">
-                    <div style={{fontFamily: "Lexend Giga"}} className="text-9xl text-white ml-25">CONFLUXES</div>
+                <div className="max-w-[2000px] w-full flex items-center justify-center flex-col">
+                    <div style={{fontFamily: "Lexend Giga"}} className="text-[10vw] text-white ml-25 text-center">CONFLUXES</div>
                 </div>
+            </div>
+            <div className="w-full h-full flex justify-center items-center left-0 top-[5vw] fixed">
+                <div style={{fontFamily: "Lexend Giga"}} className={loading ? "text-[3vw] text-white ml-25 text-center" : "hidden"}><br/>Loading dynamic content...</div>
             </div>
         </>)
     return (

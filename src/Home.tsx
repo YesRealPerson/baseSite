@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom"
 import { tryFetch } from "./components/Classes"
 import parseGithubAPI from "./components/Github"
 import parseLastFMAPI from "./components/Lastfm"
-import type { steamGames } from "./components/Interfaces"
+import type { steamGames, StyleProps } from "./components/Interfaces"
 import HomeStatic from "./components/HomeStatic"
 
 // Loader
@@ -11,6 +11,7 @@ export async function theGenuineArticle() {
   const steamGame = tryFetch("https://currentgame.spark952.workers.dev/")
   const githubActivity = tryFetch("https://githubactivity.spark952.workers.dev/")
   const lastfmActivity = tryFetch("https://broad-bar-1afc.spark952.workers.dev/")
+  await new Promise(resolve => setTimeout(resolve, 6000)); //test loader UNCOMMENT ME
   let statuses = [
     (await steamActivity).status,
     (await steamGame).status,
@@ -38,7 +39,7 @@ export async function theGenuineArticle() {
 }
 
 // Component
-export default function Index() {
+export default function Index({ style }: StyleProps) {
   const response = useLoaderData()
   const steamActivity = response.steamActivity
   const steamGame = response.steamGame
@@ -88,7 +89,7 @@ export default function Index() {
 
   return (
     <div>
-      <HomeStatic />
+      <HomeStatic style={style}/>
       <h1 className='text-2xl'>
         Steam Activity
       </h1>

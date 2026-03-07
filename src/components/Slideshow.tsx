@@ -4,22 +4,28 @@ const images = ["/IMG_4778.jpg", "/IMG_4282.jpg", "/IMG_0265.jpg", "/IMG_3563.jp
 const filters = ["filter1"]
 
 export default function Slideshow() {
+    let first = true;
     const [index, setIndex] = useState(0);
     const [animation, setAnimation] = useState("invertAnimation");
     const [filter, setFilter] = useState("filter1");
     
     const rotate = async () => {
+        if(first){
+            await new Promise(resolve => setTimeout(resolve, 1));
+            setAnimation("")
+            first = false;
+        }
         document.documentElement.style.setProperty("--i1angle", Math.random()*360 + "deg")
         document.documentElement.style.setProperty("--i2angle", Math.random()*360 + "deg")
         document.documentElement.style.setProperty("--startx", Math.random() * 100 + "%")
         document.documentElement.style.setProperty("--starty", Math.random() * 100 + "%")
         document.documentElement.style.setProperty("--endx", Math.random() * 100 + "%")
         document.documentElement.style.setProperty("--endy", Math.random() * 100 + "%")
-        document.documentElement.style.setProperty("--hueangle", (Math.random() * 100 + 100) + "deg")
+        document.documentElement.style.setProperty("--hueangle", (Math.random() * 120 + 60) + "deg")
         document.documentElement.style.setProperty("--contrast", (Math.random() * 100 + 100) + "%")
         document.documentElement.style.setProperty("--saturation", (Math.random() * 100 + 100) + "%")
         setAnimation("invertAnimation")
-        setFilter(filters[Math.floor(Math.random()*filters.length)])
+        // setFilter(filters[Math.floor(Math.random()*filters.length)]) // if I ever add additional filter styles
         setIndex((i) =>
             i === images.length - 1 ? 0 : i + 1
         );

@@ -15,11 +15,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout style={0}/>,
     errorElement: <Error />,
-    hydrateFallbackElement: <Loading />,
+    hydrateFallbackElement: <Loading style={0}/>,
     children: [
       {
         path: "/",
-        element: <Index />,
+        element: <Index style={0}/>,
         loader: theGenuineArticle
       },
       {
@@ -41,11 +41,11 @@ const router = createBrowserRouter([
     path: "/modern",
     element: <Layout style={1}/>,
     errorElement: <Error />,
-    hydrateFallbackElement: <Loading />,
+    hydrateFallbackElement: <Loading style={1}/>,
     children: [
       {
         path: "/modern",
-        element: <Index />,
+        element: <Index style={1}/>,
         loader: theGenuineArticle
       },
       {
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
-    <main className='m-5 mt-20'>
+    <main>
     </main>
   </StrictMode>,
 )

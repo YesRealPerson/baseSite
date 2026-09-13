@@ -47,6 +47,10 @@ a:hover {
   background-color: rgba(83, 187, 213, 1);
 }
 
+.bluetext {
+  color: rgba(83, 187, 213, 1);
+}
+
 .bluefade {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(83, 187, 213, 1) 20vh, rgba(83, 187, 213, 1) 100%);
 }

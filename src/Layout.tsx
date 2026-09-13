@@ -10,7 +10,7 @@ const styles = [
     },
     {
         MainStyle: "w-full flex justify-center absolute z-55 bg-black",
-        OutletStyle: "max-w-[2000px] w-full bg-white"
+        OutletStyle: "max-w-[2000px] w-full"
     }
 ]
 

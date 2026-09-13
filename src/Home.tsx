@@ -11,7 +11,7 @@ export async function theGenuineArticle() {
   const steamGame = tryFetch("https://currentgame.spark952.workers.dev/")
   const githubActivity = tryFetch("https://githubactivity.spark952.workers.dev/")
   const lastfmActivity = tryFetch("https://broad-bar-1afc.spark952.workers.dev/")
-  await new Promise(resolve => setTimeout(resolve, 6000)); //test loader UNCOMMENT ME
+  // await new Promise(resolve => setTimeout(resolve, 6000)); //test loader UNCOMMENT ME
   let statuses = [
     (await steamActivity).status,
     (await steamGame).status,
@@ -47,49 +47,99 @@ export default function Index({ style }: StyleProps) {
   const lastfmActivity = response.lastfmActivity
   let steamActivityElement = (<>Steam game activity endpoint failed to respond!<br />{steamActivity.response?.message}</>)
   if (steamActivity.status == 200) {
-    steamActivityElement = (
-      steamActivity.response.response.games.map((x: steamGames) => (
-        <div className="flex flex-row mb-5">
-          <div className="flex justify-center items-center">
-            <img className="mr-5 w-40 md:w-50" alt={x.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + x.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src = "/missing.jpg";
-            }} />
+    switch (style) {
+      case 0:
+        steamActivityElement = (
+          steamActivity.response.response.games.map((x: steamGames) => (
+            <div className="flex flex-row mb-5">
+              <div className="flex justify-center items-center">
+                <img className="mr-5 w-40 md:w-50" alt={x.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + x.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = "/missing.jpg";
+                }} />
+              </div>
+              <div>
+                <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
+                <br />
+                <span className="hidden md:inline">Time played last 2 weeks:</span><span className="md:hidden">Last 2 weeks:</span> {(Math.round(x.playtime_2weeks / 60 * 100) / 100)} hours
+                <br />
+                <span className="hidden  md:inline">Total time played:</span><span className="md:hidden">Total time:</span> {(Math.round(x.playtime_forever / 60 * 100) / 100)} hours
+              </div>
+            </div>
+          ))
+        )
+        break;
+      case 1:
+        // Should be something along the lines of a grid system
+        // Limit to 6
+        steamActivityElement = (
+          <div className="grid-rows-2 grid-cols-3 grid">
+          {steamActivity.response.response.games.map((x: steamGames) => (
+            <div className="text-white flex flex-row mb-5">
+              <div className="flex justify-center items-center">
+                <img className="mr-5 w-40 md:w-50" alt={x.name} src={"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + x.appid + "/header.jpg"} onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = "/missing.jpg";
+                }} />
+              </div>
+              <div>
+                <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
+                <br />
+                <span className="hidden md:inline">Time played last 10 weeks:</span><span className="md:hidden">Last 2 weeks:</span> {(Math.round(x.playtime_2weeks / 60 * 100) / 100)} hours
+                <br />
+                <span className="hidden  md:inline">Total time played:</span><span className="md:hidden">Total time:</span> {(Math.round(x.playtime_forever / 60 * 100) / 100)} hours
+              </div>
+            </div>
+          ))}
           </div>
-          <div>
-            <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
-            <br />
-            <span className="hidden md:inline">Time played last 2 weeks:</span><span className="md:hidden">Last 2 weeks:</span> {(Math.round(x.playtime_2weeks / 60 * 100) / 100)} hours
-            <br />
-            <span className="hidden  md:inline">Total time played:</span><span className="md:hidden">Total time:</span> {(Math.round(x.playtime_forever / 60 * 100) / 100)} hours
-          </div>
-        </div>
-      ))
-    )
+        )
+        break;
+    }
   }
 
   let currentSteam = (<></>)
   if (steamGame.status == 200 && steamGame.response.status == "yes") {
-    currentSteam = (
-      <div className="flex flex-row mb-5">
-        <div className="flex justify-center items-center">
-            <img className="mr-5 w-40 md:w-50" alt={steamGame.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + steamGame.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
-              currentTarget.onerror = null; // prevents looping
-              currentTarget.src = "./missing.jpg";
-            }} />
+    switch(style){
+      case 0:
+        currentSteam = (
+          <div className="flex flex-row mb-5">
+            <div className="flex justify-center items-center">
+              <img className="mr-5 w-40 md:w-50" alt={steamGame.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + steamGame.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = "./missing.jpg";
+              }} />
+            </div>
+            <div>
+              <a className="!p-0 animateLink" href={steamGame.response.link}>{steamGame.response.name}</a>
+              <br />
+              Currently playing!
+            </div>
           </div>
-        <div>
-          <a className="!p-0 animateLink" href={steamGame.response.link}>{steamGame.response.name}</a>
-          <br />
-          Currently playing!
-        </div>
-      </div>
-    )
+        )
+        break;
+      case 1:
+        currentSteam = (
+          <div className="flex flex-row mb-5">
+            <div className="flex justify-center items-center">
+              <img className="mr-5 w-40 md:w-50" alt={steamGame.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + steamGame.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src = "./missing.jpg";
+              }} />
+            </div>
+            <div>
+              <a className="!p-0 animateLink" href={steamGame.response.link}>{steamGame.response.name}</a>
+              <br />
+              Currently playing!
+            </div>
+          </div>
+        )
+        break;
+    }
   }
 
   return (
     <div>
-      <HomeStatic style={style}/>
+      <HomeStatic style={style} />
       <h1 className='text-2xl'>
         Steam Activity
       </h1>

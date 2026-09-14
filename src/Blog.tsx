@@ -1,7 +1,7 @@
 import BlogEntry from "./components/BlogEntry";
 import Img from "./components/Image"
 import { InlineMath, BlockMath } from 'react-katex';
-import type { ImgProps } from "./components/Interfaces";
+import type { ImgProps, StyleProps } from "./components/Interfaces";
 
 function BR() {
     return (<br className="block my-2" />)
@@ -25,30 +25,22 @@ function Image({ src, alt, className, details }: ImgProps) {
     )
 }
 
-export default function Blog() {
+export default function Blog({ style }: StyleProps) {
     return (
-        <>
-            <BlogEntry title="A Refresher" date="January 22nd, 2026" subtitle="Trying something new">
+        <div className="mt-30 px-20">
+            {style ? <div className={(style ? "text-white" : "text-black")+" mb-20"}>
+                <div className="text-6xl" style={{ fontFamily: "Lexend Giga" }}>
+                    BLOG
+                </div>
+                <div className="text-xl ml-5 font-serif">
+                    This is a page for random pieces of text basically.<br/>It's probably going to stay fairly empty because I can't write things without wanting to delete them later.
+                </div>
+            </div> : <></>}
+            <BlogEntry title="A Blog" date="September 14th, 2026" subtitle="Nothing of much importance" style={style}>
                 <div>
-                    <div>
-                        Hello! If you've visited this site before, you might notice it's almost completely different.
-                        I'm the sort of person who tends to dislike things I make over time, so this site was overdue for some change.
-                        <BR />
-                        I also wanted to rewrite my site using more modern tools like React and TypeScript.
-                        I've also added some functionality like making this a single page app or adding <InlineMath math="\LaTeX" /> (I don't really know if I'll write anything math related but who knows).
-                        <BR />
-                        <MathBlock math="(\forall p,a,b \in \mathbb{N})[(P(p) \land p|ab) \implies (p|b\lor p|a)]" />
-                        <i className="block text-center">
-                            For all natural numbers p, a, and b where p is prime and p divides a times b
-                            implies p divides b or p divides a (Euclid's Lemma).
-                        </i>
-                        <BR />
-                        I don't really know what I'll really write here from now on, maybe random thoughts, Gundams or something.
-                        <Image src="/IMG_5271.jpg" alt="Strike Freedom Gundam" details={[["Perfect Grade", ""]]}></Image>
-                        On a random note: I'm really excited for Marathon to come out March 5th.
-                        I think this year I'd like to write something to this page weekly, but we'll see...
-                    </div>
+                    I figured I should finish updating this website at some point and now is probably better than never...
+                    Really not too sure what I'll ultimately use this blog for but it's nice to have it here.
                 </div>
             </BlogEntry>
-        </>)
+        </div>)
 }

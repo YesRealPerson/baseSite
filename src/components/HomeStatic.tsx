@@ -8,8 +8,7 @@ export default function HomeStatic({ style }: StyleProps) {
                     Hello!
                 </h1>
                 <p>
-                    This is my website, I am currently remaking it.<br /><br />
-                    This version is still a work in progress but all of the functionality I want is here (although who knows if I come up with anything cool to add to the site or if I forgot anything).
+                    This is my website, this version is the nice simple version of the site. You can click the cycle button to change how this main page is styled. Currently there is only one other style, but maybe I'll make more.<br /><br />
                 </p>
                 <hr className="my-2" />
             </>
@@ -29,14 +28,16 @@ export default function HomeStatic({ style }: StyleProps) {
                             Ultimately, just a fun way for me to spend time making something. 
                             I'm not a truly great at creative design so this website takes a lot of inspiration from Bungie's Marathon website.
                             You can say what you want about the game, but it's got some style.
+                            <br/><br/>
+                            You can press the cycle button on the header to change the website's styling.
                         </div>
-                        <div className="min-h-[10vh] p-5 bg-white">
+                        <div className="min-h-[10vh] p-5 text-3xl bg-white">
                                 CONFLUXES.net<br/>
-                                <div className="text-sm font-sans ml-2">Though never the same...</div>
+                                <div className="text-xl font-sans ml-2">Though never the same...</div>
                         </div>
                     </div>
-                    {/* TODO: Find better image */}
-                    <div className="bg-[url(/IMG_3563.jpg)] h-[70vh] w-[50vw]" style={{backgroundAttachment: "fixed", backgroundPosition: "center", backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}></div>
+                    <div className="bg-[url(/0G3A9857.jpg)] h-[70vh]  max-w-[50%] w-[50vw] bg-cover" style={{backgroundPosition: "center bottom", backgroundRepeat: "no-repeat"}}></div>
+
                 </div>
             </>
         )

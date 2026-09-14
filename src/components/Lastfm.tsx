@@ -125,15 +125,19 @@ export default function parseLastFMAPI(response: lastfmAPIResponse, style: numbe
             )
         case 1:
             topElement = response.top.toptracks.track.map((x) => (
-                <div className="flex-1">
+                <div className="flex-1 music">
                     <a href={x.url} target="_blank" className="block aspect-square overflow-hidden mb-5 relative">
                         <img
                             className="w-full h-full object-cover block"
                             title={x.name}
                             alt={x.name}
                             src={x.fixedimage}
+                             onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
+                    }}
                         />
-                        <div className="absolute right-0 top-0 bluebg aspect-2/1 p-1"style={{ fontFamily: "Lexend Giga" }}>
+                        <div className="absolute right-0 top-0 bluebg aspect-2/1 p-1" style={{ fontFamily: "Lexend Giga" }}>
                             #{x["@attr"].rank}
                         </div>
                     </a>
@@ -143,20 +147,28 @@ export default function parseLastFMAPI(response: lastfmAPIResponse, style: numbe
                     </div>
 
                     <div className="text-lg" style={{ fontFamily: "Lexend Giga" }}>
-                        {x.name.length > 20 ? x.name.substring(0, 20)+"..." : x.name} — {x.artist.name}
+                        {x.name.length > 20 ? x.name.substring(0, 20) + "..." : x.name} — {x.artist.name}
                     </div>
                 </div>
             ))
             recentElement = response.recent.recenttracks.track.map((x) => (
-                <div className="flex-1">
-                    <a href={x.url} target="_blank" className="block aspect-square overflow-hidden mb-5">
-                        <img className="w-full h-full object-cover block" title={x.name} alt={x.name} src={x.image[3]["#text"]} />
+                <div className="flex-1 music">
+                    <a href={x.url} target="_blank" className="block aspect-square overflow-hidden mb-5 relative">
+                        <img className="w-full h-full object-cover block" title={x.name} alt={x.name} src={x.image[3]["#text"]} onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src = "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png";
+                    }} />
+                        {x["@attr"]?.nowplaying && (
+                            <div className="absolute right-0 top-0 bluebg p-1" style={{ fontFamily: "Lexend Giga" }}>
+                                Now Playing!
+                            </div>
+                        )}
                     </a>
                     <div className="font-mono text-xs">
                         {x.album["#text"]}
                     </div>
                     <div className="text-lg" style={{ fontFamily: "Lexend Giga" }}>
-                        {x.name.length > 20 ? x.name.substring(0, 20)+"..." : x.name} — {x.artist["#text"]}
+                        {x.name.length > 20 ? x.name.substring(0, 20) + "..." : x.name} — {x.artist["#text"]}
                     </div>
                 </div>
             ))
@@ -173,7 +185,7 @@ export default function parseLastFMAPI(response: lastfmAPIResponse, style: numbe
                     <div className="flex flex-row gap-5 px-10">
                         {topElement}
                     </div>
-                    <h3 className="text-4xl w-full pl-3 mb-15 mt-2" style={{ fontFamily: "Lexend Giga" }}>RECENT TRACKS</h3>
+                    <h3 className="text-4xl w-full pl-3 mb-15 mt-7" style={{ fontFamily: "Lexend Giga" }}>RECENT TRACKS</h3>
                     <div className="flex flex-row gap-5 px-10">
                         {recentElement}
                     </div>

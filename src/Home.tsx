@@ -11,7 +11,7 @@ export async function theGenuineArticle() {
   const steamGame = await tryFetch("https://currentgame.spark952.workers.dev/")
   const githubActivity = await tryFetch("https://githubactivity.spark952.workers.dev/")
   const lastfmActivity = await tryFetch("https://broad-bar-1afc.spark952.workers.dev/")
-  // await new Promise(resolve => setTimeout(resolve, 6000)); //test loader UNCOMMENT ME
+  // await new Promise(resolve => setTimeout(resolve, 1000)); //test loader UNCOMMENT ME
   let statuses = [
     steamActivity.status,
     steamGame.status,
@@ -128,11 +128,11 @@ export default function Index({ style }: StyleProps) {
         const names = namesList.join(", ") + "..."
         steamActivityElement = (
           <div className="min-h-[80vh] flex flex-col mt-[10vh]">
-            <div className="h-[35vh] bg-[url(/IMG_3563.jpg)] text-white flex justify-end flex-col p-10 text-4xl" style={{ fontFamily: "Lexend Giga" }}>
+            <div className="h-[35vh] bg-[url(/IMGL2546.jpg)] text-white flex justify-end items-end flex-col p-10 text-4xl bg-cover" style={{ fontFamily: "Lexend Giga", backgroundPosition: "center -550px", backgroundRepeat: "no-repeat" }}>
               Holding your attention...<br />
               <div className="font-mono text-lg pl-5">Always more to do but never enough to be new.</div>
             </div>
-            <div className="h-[40vh] pt-[5vh] px-10 flex flex-row items-start justify-end gap-5 relative">
+            <div className="h-[40vh] max-h-[500px] pt-[5vh] px-10 flex flex-row items-start justify-end gap-5 relative">
               <div className="flex-grow text-white h-full flex items-center overflow-hidden
               [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]"style={{ fontFamily: "Lexend Giga" }}>
                 <div className="scrolling text-clip text-6xl whitespace-nowrap">{names}&emsp;&emsp;&emsp;</div>

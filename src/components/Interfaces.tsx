@@ -35,7 +35,8 @@ export interface BlogEntryType {
     date: string,
     title: string,
     subtitle?: string,
-    children: JSX.Element
+    children: JSX.Element,
+    style: number
 }
 
 // STEAM

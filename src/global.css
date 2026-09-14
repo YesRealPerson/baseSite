@@ -148,3 +148,16 @@ a:hover {
   transition-delay: .2s;
   visibility: hidden;
 }
+
+.music:hover > div{
+  color: gray;
+}
+.music:hover img {
+  filter: brightness(105%) blur(1px);
+}
+.music > div {
+  transition: color .2s;
+}
+.music img {
+  transition: filter .5s;
+}

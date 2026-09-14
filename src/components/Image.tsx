@@ -1,7 +1,7 @@
 import { useState } from "react"
 import type { ImgProps } from "./Interfaces"
 
-const defaultClass = "md:h-[20vh] md:m-[1vh] md:w-auto";
+const defaultClass = "md:h-[25vh] md:m-[0.5vh] md:w-auto";
 const zoomClass    = "max-h-[50vh] bg-black object-contain xl:max-w-[70vw] xl:max-h-[90vh]"
 
 const Img = ({ src, alt, className, details }: ImgProps) => {
@@ -42,10 +42,10 @@ const Img = ({ src, alt, className, details }: ImgProps) => {
                     <img src={src} alt={alt} className={imgClass} loading="lazy"></img>
                 {/* </div> */}
                 <div className={altClass}>
-                    <div className="mb-5 px-[.5em]">
+                    {/* <div className="mb-5 px-[.5em]">
                         {alt}
                     </div>
-                    <hr className="my-1 xl:my-[.5em]"/>
+                    <hr className="my-1 xl:my-[.5em]"/> */}
                     {detailsElement}
                     <div className="mt-5 py-1 text-white bg-gray-800 text-center">
                         <a href={src} className="!border-none hover:text-gray-300" download={true}>download</a>

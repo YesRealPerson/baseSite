@@ -33,7 +33,7 @@ export default function Header({ style, loading }: StyleProps) {
     let next;
     let base;
     switch (style) {
-        case 1:
+        case 0:
             next = "/"
             next += location == "modern" ? "" : location
             base = "/modern/"
@@ -47,6 +47,7 @@ export default function Header({ style, loading }: StyleProps) {
             base = "/"
             break;
     }
+    console.log(location)
     const punch = (
         <>
             <div className="absolute w-full flex justify-center z-10">
@@ -58,33 +59,22 @@ export default function Header({ style, loading }: StyleProps) {
                         </div>
                     </div>
                 </div>
-            <div className="pointer-events-none fixed w-full top-20 left-0 flex justify-center z-10">
-                <div className="max-w-[2000px] w-full">
-                    <img src="/favicon.ico" className={styles[style].IconStyle} alt="" />
-                </div>
-            </div>
-            </div>
-            {/* SPLASH IMAGE */}
-            <div className="flex flex-row h-[100vh] max-w-[2000px] w-full">
-                <Slideshow />
-            </div>
-            {/* ICON */}
-            {/* <div className="absolute z-1000 w-full h-full top-0 left-0 flex justify-center">
-                <div className="max-w-[2000px] w-full flex items-end justify-end flex-col">
-                    <div className="bluebg text-black font-mono h-35 pl-2 pt-2">
-                        <div style={{fontFamily: "Lexend Giga"}} className="text-4xl">A new start</div>
-                        <div style={{fontFamily: "Lexend Giga"}} className="text-2xl ml-5 mr-15">What is new becomes old.<br/>Again and again...</div>
-                        <div className="font-mono text-10 text-center p-1 bg-black bluetext absolute right-0 bottom-0">Seek more.</div>
+                <div className="pointer-events-none fixed w-full top-20 left-0 flex justify-center z-10">
+                    <div className="max-w-[2000px] w-full">
+                        <img src="/favicon.ico" className={styles[style].IconStyle} alt="" />
                     </div>
                 </div>
-            </div> */}
-            {/* TODO MAKE THIS MORE INTERESTING, maybe some loading animation in place of the slideshow? */}
-            <div className="w-full h-full flex justify-center items-center left-0 top-[5vw] fixed">
-                <div style={{fontFamily: "Lexend Giga"}} className={loading ? "text-[3vw] text-white ml-25 text-center" : "hidden"}><br/>Loading dynamic content...</div>
+            </div>
+            {/* SPLASH IMAGE */}
+            <div className="flex flex-row h-[100vh] max-w-[2000px] w-full relative">
+                <Slideshow />
+                <div className="absolute w-full h-full flex justify-center items-center left-0 top-0">
+                    <div style={{ fontFamily: "Lexend Giga" }} className={loading ? "text-8xl text-white ml-20 text-center" : "hidden"}><br />Fetching dynamic content...</div>
+                </div>
             </div>
         </>)
     const pusher = (<>
-    <div className="w-30 h-full absolute left-0 top-0 bluebg flex justify-center items-center text-black"><InlineMath math="\xrightarrow[\text{flowing}]{\text{currents}}"></InlineMath></div>
+        <div className="w-30 h-full absolute left-0 top-0 bluebg flex justify-center items-center text-black"><InlineMath math="\xrightarrow[\text{flowing}]{\text{currents}}"></InlineMath></div>
     </>)
     return (
         <div className={styles[style].OuterStyle}>
@@ -96,12 +86,12 @@ export default function Header({ style, loading }: StyleProps) {
                     {style ? pusher : ""}
                     <Link className={styles[style].LinkStyle} to={base}>Home [<InlineMath math="\times"></InlineMath>]</Link>
                     <Link className={styles[style].LinkStyle} to={base + "pictures"}>Pictures [<InlineMath math="\Im"></InlineMath>]</Link>
-                    <Link className={styles[style].LinkStyle} to={base + "/projects"}>Projects [<InlineMath math="\Game"></InlineMath>]</Link>
-                    <Link className={styles[style].LinkStyle} to={base + "/blog"}>Blog [<InlineMath math="\infty"></InlineMath>]</Link>
+                    {/* <Link className={styles[style].LinkStyle} to={base + "projects"}>Projects [<InlineMath math="\Game"></InlineMath>]</Link> */}
+                    <Link className={styles[style].LinkStyle} to={base + "blog"}>Blog [<InlineMath math="\infty"></InlineMath>]</Link>
                     {style != -1 ? <a className={styles[style].LinkStyle} href={next}>Cycle [<InlineMath math="\rightleftharpoons"></InlineMath>]</a> : <></>}
                 </nav>
             </header>
-            {location.indexOf("modern") == -1 ? <></> : punch}
+            {location != "" ? <></> : punch}
         </div>
     )
 }

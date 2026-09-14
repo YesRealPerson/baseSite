@@ -13,53 +13,53 @@ import 'katex/dist/katex.min.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout style={0}/>,
-    errorElement: <Error />,
-    hydrateFallbackElement: <Loading style={0}/>,
-    children: [
-      {
-        path: "/",
-        element: <Index style={0}/>,
-        loader: theGenuineArticle
-      },
-      {
-        path: "/projects",
-        element: <Projects />,
-        loader: getProjects
-      },
-      {
-        path: "/pictures",
-        element: <Photography />,
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      }
-    ]
-  },
-  {
-    path: "/modern",
     element: <Layout style={1}/>,
     errorElement: <Error />,
     hydrateFallbackElement: <Loading style={1}/>,
     children: [
       {
-        path: "/modern",
+        path: "/",
         element: <Index style={1}/>,
         loader: theGenuineArticle
       },
+      // {
+      //   path: "/projects",
+      //   element: <Projects />,
+      //   loader: getProjects
+      // },
       {
-        path: "/modern/projects",
-        element: <Projects />,
-        loader: getProjects
+        path: "/pictures",
+        element: <Photography style={1}/>,
       },
       {
+        path: "/blog",
+        element: <Blog style={1}/>,
+      }
+    ]
+  },
+  {
+    path: "/modern",
+    element: <Layout style={0}/>,
+    errorElement: <Error />,
+    hydrateFallbackElement: <Loading style={0}/>,
+    children: [
+      {
+        path: "/modern",
+        element: <Index style={0}/>,
+        loader: theGenuineArticle
+      },
+      // {
+      //   path: "/modern/projects",
+      //   element: <Projects />,
+      //   loader: getProjects
+      // },
+      {
         path: "/modern/pictures",
-        element: <Photography />,
+        element: <Photography style={1}/>,
       },
       {
         path: "/modern/blog",
-        element: <Blog />,
+        element: <Blog style={0} />,
       }
     ]
   }

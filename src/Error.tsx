@@ -14,6 +14,7 @@ export default function ErrorPage() {
         "I hate using any and all Google workspace products."
     ]
     const error = useRouteError();
+    console.log(error)
     let status = "Error 500"
     let temp = "Internal server error"
     if (isRouteErrorResponse(error)) {
@@ -47,7 +48,7 @@ export default function ErrorPage() {
 
     return (
         <>
-            <Header />
+            <Header style={0}/>
             <main className="mt-20 m-5">
                 <div className="pointer-events-none flex fixed top-0 left-0 z-0 w-screen h-screen justify-center items-center">
                     <div className="text-center">

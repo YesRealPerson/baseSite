@@ -68,7 +68,9 @@ export interface trackTop {
     "@attr": {
         rank: string
     }
-    playcount: string
+    playcount: string,
+    fixedimage: string,
+    albumtitle: string
 }
 
 export interface trackLatest {

@@ -47,8 +47,6 @@ export default function Header({ style, loading }: StyleProps) {
             base = "/"
             break;
     }
-    console.log("what ", next)
-
     const punch = (
         <>
             <div className="absolute w-full flex justify-center z-10">
@@ -71,7 +69,7 @@ export default function Header({ style, loading }: StyleProps) {
                 <Slideshow />
             </div>
             {/* ICON */}
-            <div className="absolute z-1000 w-full h-full top-0 left-0 flex justify-center">
+            {/* <div className="absolute z-1000 w-full h-full top-0 left-0 flex justify-center">
                 <div className="max-w-[2000px] w-full flex items-end justify-end flex-col">
                     <div className="bluebg text-black font-mono h-35 pl-2 pt-2">
                         <div style={{fontFamily: "Lexend Giga"}} className="text-4xl">A new start</div>
@@ -79,7 +77,7 @@ export default function Header({ style, loading }: StyleProps) {
                         <div className="font-mono text-10 text-center p-1 bg-black bluetext absolute right-0 bottom-0">Seek more.</div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* TODO MAKE THIS MORE INTERESTING, maybe some loading animation in place of the slideshow? */}
             <div className="w-full h-full flex justify-center items-center left-0 top-[5vw] fixed">
                 <div style={{fontFamily: "Lexend Giga"}} className={loading ? "text-[3vw] text-white ml-25 text-center" : "hidden"}><br/>Loading dynamic content...</div>

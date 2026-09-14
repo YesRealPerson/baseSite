@@ -118,3 +118,33 @@ a:hover {
   display: block;
   object-fit: cover;
 }
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.scrolling {
+  animation: scroll 20s linear infinite;
+}
+
+.slide:hover .bluebg {
+  width: 100%;
+}
+.slide:hover .opacity-0 {
+  opacity: 1;
+  visibility: visible;
+}
+.slide .bluebg {
+  transition: width .2s ease-out;
+  transition-delay: 0s;
+}
+.slide .opacity-0 {
+  transition: opacity .3s;
+  transition-delay: .2s;
+  visibility: hidden;
+}

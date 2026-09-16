@@ -30,6 +30,8 @@ export default function HomeStatic({ style }: StyleProps) {
                             You can say what you want about the game, but it's got some style.
                             <br/><br/>
                             You can press the cycle button on the header to change the website's styling.
+                            <br/><br/>
+                            Responsive design will come one day when I'm not that busy again.
                         </div>
                         <div className="min-h-[10vh] p-5 text-3xl bg-white">
                                 CONFLUXES.net<br/>

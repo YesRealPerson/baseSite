@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
+import { useRouteError, isRouteErrorResponse, /*Link*/ } from "react-router-dom";
 import Header from "./components/Header";
 
 export default function ErrorPage() {

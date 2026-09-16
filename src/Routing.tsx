@@ -4,7 +4,7 @@ import './global.css'
 import Loading from "./Loading.tsx"
 import Index, {theGenuineArticle} from './Home.tsx'
 import Photography from './Photography.tsx'
-import Projects, {getProjects} from './Projects.tsx'
+// import Projects, {getProjects} from './Projects.tsx'
 import Blog from './Blog.tsx'
 import Error from './Error.tsx'
 import Layout from './Layout.tsx'

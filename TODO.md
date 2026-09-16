@@ -8,3 +8,4 @@
 2. Find better image for about me area
 3. Fix error page
 4. Add more hover reactivity to modern music and game icons
+5. Make dedicated projects page

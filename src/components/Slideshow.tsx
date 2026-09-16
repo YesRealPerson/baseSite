@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 
 // TODO: Change images to something more fitting to look at
 const images = ["/IMG_4778.jpg", "/IMG_4282.jpg", "/IMG_0265.jpg", "/IMG_3563.jpg", "/IMG_4670.jpg"]
-const filters = ["filter1"]
+// const filters = ["filter1"]
 
 export default function Slideshow() {
     let first = true;
     const [index, setIndex] = useState(0);
     const [animation, setAnimation] = useState("invertAnimation");
-    const [filter, setFilter] = useState("filter1");
+    const [filter] = useState("filter1");
     
     const rotate = async () => {
         if(first){

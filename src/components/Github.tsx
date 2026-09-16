@@ -73,7 +73,7 @@ export default async function parseGithubAPI(response: any, style: number) {
                         <span style={{ fontFamily: "Lexend Giga" }}>LATEST RECORDED ACTIVITY:</span>
                         <div className="ml-5 font-serif">{latestPush}</div>
                         <div className="absolute left-3 bottom-3 bg-black text-white p-5">
-                            <a href={"https://github.com/" + events[0].actor.login} className="animateLink" style={{ fontFamily: "Lexend Giga" }}>VERSION CONTROL <InlineMath math="\Rsh"></InlineMath></a>
+                            <a href={"https://github.com/" + events[0].actor.login} target="_blank" className="animateLink" style={{ fontFamily: "Lexend Giga" }}>VERSION CONTROL <InlineMath math="\Rsh"></InlineMath></a>
                         </div>
                     </div>
                     <div className="absolute aspect-2/1 right-0 bottom-0 h-full w-auto max-w-[50%] bg-[url(/IMG_8298.jpg)]

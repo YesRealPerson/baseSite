@@ -18,7 +18,7 @@ const styles = [
             "flex flex-col sm:flex-row items-center " +
             "justify-start sm:justify-end " +
             "gap-1 sm:gap-2 " +
-            "px-2 sm:px-7 py-2 " +
+            "sm:px-7 py-2 " +
             "min-h-12 sm:h-15 " +
             "max-w-none sm:max-w-[calc(100vw-4rem)] " +
             "rounded-2xl sm:rounded-4xl " +
@@ -53,13 +53,13 @@ const styles = [
             "z-[9999] " +
             "text-white " +
             "items-center " +
-            "justify-start " +
+            "justify-center " +
             "sm:justify-end " +
             "text-left sm:text-right " +
             "bg-black " +
             "gap-2 sm:gap-5 lg:gap-10 " +
             "px-2 sm:px-5 lg:px-7 " +
-            "pl-14 sm:pl-28 lg:pl-32 " +
+            "sm:pl-28 lg:pl-32 " +
             "min-h-14 " +
             "w-full " +
             "overflow-x-auto " +

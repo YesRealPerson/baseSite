@@ -19,7 +19,7 @@ export default function HomeStatic({ style }: StyleProps) {
                 <div className="text-2xl font-mono text-white ml-5">ABOUT THIS PAGE</div>
                 <div className="flex flex-row pt-10 justify-between">
                     <div className="flex flex-col justify-between" style={{ fontFamily: "Lexend Giga" }}>
-                        <div className="text-sm ml-10 text-white w-100">
+                        <div className="text-sm ml-10 mb-10 text-white w-100">
                             <b className="text-lg">Before going on, know that the text on this page is satirical.</b><br/><br/>You can read more about my inspirations and motivations below.<br/><br/>
                             This version of the site is meant to be kind of emulate that self-important website design feel.
                             A lot of big and bold fonts, big images, and a lot of text to say very little.

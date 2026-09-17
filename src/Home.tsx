@@ -128,19 +128,19 @@ export default function Index({ style }: StyleProps) {
         const names = namesList.join(", ") + "..."
         steamActivityElement = (
           <div className="min-h-[80vh] flex flex-col mt-[10vh]">
-            <div className="h-[35vh] bg-[url(/IMGL2546.jpg)] text-white flex justify-end items-end flex-col p-10 text-4xl bg-cover" style={{ fontFamily: "Lexend Giga", backgroundPosition: "center -550px", backgroundRepeat: "no-repeat" }}>
+            <div className="h-[35vh] bg-[url(/IMGL2546.jpg)] text-white flex justify-end items-end flex-col p-10 text-4xl bg-cover" style={{ fontFamily: "Lexend Giga", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
               Holding your attention...<br />
               <div className="font-mono text-lg pl-5">Always more to do but never enough to be new.</div>
             </div>
             <div className="h-[40vh] max-h-[500px] pt-[5vh] px-10 flex flex-row items-start justify-end gap-5 relative">
-              <div className="flex-grow text-white h-full flex items-center overflow-hidden
+              <div className="flex-grow text-white h-auto flex items-center overflow-hidden
               [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]"style={{ fontFamily: "Lexend Giga" }}>
                 <div className="scrolling text-clip text-6xl whitespace-nowrap">{names}&emsp;&emsp;&emsp;</div>
                 <div className="scrolling text-clip text-6xl whitespace-nowrap">{names}&emsp;&emsp;&emsp;</div>
               </div>
               {modernAppend[0]}
               {games.map((x: steamGames) => (
-                <div className="aspect-6/9 h-full slide">
+                <div className="aspect-6/9 h-full w-full max-w-[12vw] slide">
                   <a href={"https://store.steampowered.com/app/" + x.appid} target="_blank" className="relative block">
                     <img className="h-full w-auto block" title={x.name} alt={x.name} src={"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + x.appid + "/library_600x900_2x.jpg"} onError={({ currentTarget }) => {
                       currentTarget.onerror = null; // prevents looping

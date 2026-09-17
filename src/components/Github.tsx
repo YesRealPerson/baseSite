@@ -66,18 +66,21 @@ export default async function parseGithubAPI(response: any, style: number) {
             )
         case (1):
             return (
-                <div className="text-black my-15 px-15 p-10 h-[60vh] max-h-[500px] relative">
+                <div className="text-black sm:my-15 sm:px-15 px-1 p-10 py-3 sm:py-10 h-[60vh] max-h-[500px] relative">
                     <div className="font-sans">
                         {/* Replace this with something more interesting */}
-                        <h3 className="text-4xl font-mono">WRITING CODE. EXPRESS INTENT. ASSERT.</h3>
-                        <span style={{ fontFamily: "Lexend Giga" }}>LATEST RECORDED ACTIVITY:</span>
+                        <h3 className="text-4xl font-mono"><span className="hidden sm:inline">WRITING CODE. EXPRESS INTENT. </span>ASSERT.</h3>
+                        <span style={{ fontFamily: "Lexend Giga" }}>LATEST ACTIVITY:</span>
                         <div className="ml-5 font-serif">{latestPush}</div>
                         <div className="absolute left-3 bottom-3 bg-black text-white p-5">
                             <a href={"https://github.com/" + events[0].actor.login} target="_blank" className="animateLink" style={{ fontFamily: "Lexend Giga" }}>VERSION CONTROL <InlineMath math="\Rsh"></InlineMath></a>
                         </div>
                     </div>
-                    <div className="absolute aspect-2/1 right-0 bottom-0 h-full w-auto max-w-[50%] bg-[url(/IMG_8298.jpg)]
-                    [mask-image:linear-gradient(to_right,transparent,black_50%)]" style={{backgroundAttachment: "fixed", backgroundPosition: "center 10px", backgroundRepeat: 'no-repeat', backgroundSize: '200vh'}}></div>
+                    <div className="absolute aspect-1/2 sm:aspect-2/1 right-0 bottom-0 h-auto w-full sm:h-full sm:w-auto sm:max-w-[50%] sm:max-h-[100%] max-h-[50%] bg-[url(/IMG_8298.jpg)]
+                    sm:[mask-image:linear-gradient(to_right,transparent,black_50%)] 
+                    [mask-image:linear-gradient(to_bottom,transparent,black_50%)] 
+                    z-[-1]
+                    bg-position-[-1000px_100px] sm:bg-position-[center_10px]" style={{backgroundAttachment: "fixed", backgroundRepeat: 'no-repeat', backgroundSize: '200vh'}}></div>
                     <div className="absolute bottom-0 w-full h-full font-mono left-0 opacity-50 text-justify z-[-1] flex items-end
                     [mask-image:linear-gradient(to_bottom,transparent,transparent_10%,black_95%)]">
                         int AsyncVote(raft_t* r, char* body, int currentTerm) {"{"}

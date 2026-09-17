@@ -27,15 +27,15 @@ import type { /*ImgProps,*/ StyleProps } from "./components/Interfaces";
 
 export default function Blog({ style }: StyleProps) {
     return (
-        <div className="mt-30 px-20">
-            {style ? <div className={(style ? "text-white" : "text-black")+" mb-20"}>
-                <div className="text-6xl" style={{ fontFamily: "Lexend Giga" }}>
+        <div className="mt-30 px-10 md:px-20">
+            <div className={(style ? "text-white font-[Lexend_Giga]" : "text-black font-serif")+" mb-20"}>
+                <div className="text-3xl mb-2 md:text-6xl">
                     BLOG
                 </div>
                 <div className="text-xl ml-5 font-serif">
                     This is a page for random pieces of text basically.<br/>It's probably going to stay fairly empty because I can't write things without wanting to delete them later.
                 </div>
-            </div> : <></>}
+            </div>
             {/* START BLOG ENTRIES */}
             <BlogEntry title="Movies" date="September 16th, 2026" subtitle="AMC's A-List" style={style}>
                 <div>

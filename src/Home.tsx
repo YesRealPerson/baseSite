@@ -11,176 +11,375 @@ export async function theGenuineArticle() {
   const steamGame = await tryFetch("https://currentgame.spark952.workers.dev/")
   const githubActivity = await tryFetch("https://githubactivity.spark952.workers.dev/")
   const lastfmActivity = await tryFetch("https://broad-bar-1afc.spark952.workers.dev/")
-  // await new Promise(resolve => setTimeout(resolve, 1000)); //test loader UNCOMMENT ME
-  let statuses = [
+
+  const statuses = [
     steamActivity.status,
     steamGame.status,
     githubActivity.status,
     lastfmActivity.status
   ]
-  // Format lastfm because api broken af
+
+  // Format Last.fm because API is broken
   const lastfmjson = await lastfmActivity.json()
+
   for (let i = 0; i < lastfmjson.top.toptracks.track.length; i++) {
-    const x = lastfmjson.top.toptracks.track[i];
-    const response = await ((await tryFetch(`https://gettrack.spark952.workers.dev?name=${x.name}&artist=${x.artist.name}`)).json())
-    let cover = response.image == "" || !response.image ? "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png" : response.image
-    let title = !response.album ? "" : response.album
+    const x = lastfmjson.top.toptracks.track[i]
+
+    const response = await (
+      await tryFetch(
+        `https://gettrack.spark952.workers.dev?name=${x.name}&artist=${x.artist.name}`
+      )
+    ).json()
+
+    const cover =
+      response.image == "" || !response.image
+        ? "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png"
+        : response.image
+
+    const title = !response.album ? "" : response.album
+
     x.fixedimage = cover
     x.albumtitle = title
   }
+
   return {
     steamActivity: {
-      "status": statuses[0],
-      "response": statuses[0] == 200 ? await (await steamActivity).json() : { message: (await steamActivity).statusText }
+      status: statuses[0],
+      response:
+        statuses[0] == 200
+          ? await steamActivity.json()
+          : { message: steamActivity.statusText }
     },
+
     steamGame: {
-      "status": statuses[1],
-      "response": statuses[1] == 200 ? await (await steamGame).json() : { message: (await steamGame).statusText }
+      status: statuses[1],
+      response:
+        statuses[1] == 200
+          ? await steamGame.json()
+          : { message: steamGame.statusText }
     },
+
     githubActivity: {
-      "status": statuses[2],
-      "response": statuses[2] == 200 ? await githubActivity.json() : { message: (await githubActivity).statusText }
+      status: statuses[2],
+      response:
+        statuses[2] == 200
+          ? await githubActivity.json()
+          : { message: githubActivity.statusText }
     },
+
     lastfmActivity: {
-      "status": statuses[3],
-      "response": statuses[3] == 200 ? lastfmjson : { message: (await lastfmActivity).statusText }
+      status: statuses[3],
+      response:
+        statuses[3] == 200
+          ? lastfmjson
+          : { message: lastfmActivity.statusText }
     }
   }
 }
 
 // Component
 export default function Index({ style }: StyleProps) {
-  const response = useLoaderData()
+  const response = useLoaderData() as any
+
   const steamActivity = response.steamActivity
   const steamGame = response.steamGame
-  const githubActivity = parseGithubAPI(response.githubActivity, style)
-  const lastfmActivity = parseLastFMAPI(response.lastfmActivity.response, style)
-  let steamActivityElement = (<>Steam game activity endpoint failed to respond!<br />{steamActivity.response?.message}</>)
-  let currentSteam = (<></>)
-  let modernAppend = [(<></>), 0]
-  if (steamGame.status == 200 && steamGame.response.status == "yes") {
+
+  const githubActivity = parseGithubAPI(
+    response.githubActivity,
+    style
+  )
+
+  const lastfmActivity = parseLastFMAPI(
+    response.lastfmActivity.response,
+    style
+  )
+
+  let steamActivityElement = (
+    <>
+      Steam game activity endpoint failed to respond!
+      <br />
+      {steamActivity.response?.message}
+    </>
+  )
+
+  let currentSteam = <></>
+
+  let modernAppend: [React.ReactNode, string] = [<></>, ""]
+
+  /*
+   * CURRENT STEAM GAME
+   */
+  if (
+    steamGame.status === 200 &&
+    steamGame.response.status === "yes"
+  ) {
     switch (style) {
       case 0:
         currentSteam = (
-          <div className="flex flex-row mb-5">
+          <div className="flex flex-col sm:flex-row mb-5 gap-4">
             <div className="flex justify-center items-center">
-              <img className="mr-5 w-40 md:w-50" alt={steamGame.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + steamGame.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = "./missing.jpg";
-              }} />
+              <img
+                className="w-full max-w-[16rem] sm:w-40 md:w-50"
+                alt={steamGame.response.name}
+                src={
+                  "https://cdn.cloudflare.steamstatic.com/steam/apps/" +
+                  steamGame.response.appid +
+                  "/capsule_231x87.jpg"
+                }
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null
+                  currentTarget.src = "./missing.jpg"
+                }}
+              />
             </div>
-            <div>
-              <a className="!p-0 animateLink" href={steamGame.response.link}>{steamGame.response.name}</a>
+
+            <div className="text-center sm:text-left">
+              <a
+                className="!p-0 animateLink"
+                href={steamGame.response.link}
+              >
+                {steamGame.response.name}
+              </a>
+
               <br />
+
               Currently playing!
             </div>
           </div>
         )
-        break;
+        break
+
       case 1:
-        modernAppend[0] = (
-          <div className="aspect-6/9 h-full slide">
-            <a href={steamGame.response.link} target="_blank" className="relative block">
-              <img className="h-full w-auto block" title={steamGame.response.name} alt={steamGame.response.name} src={"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + steamGame.response.appid + "/library_600x900_2x.jpg"} onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = "/missing.jpg";
-              }} />
+        modernAppend = [
+          <div className="w-full sm:w-auto sm:aspect-[6/9] sm:h-full shrink-0 slide">
+            <a
+              href={steamGame.response.link}
+              target="_blank"
+              rel="noreferrer"
+              className="relative block"
+            >
+              <img
+                className="
+                  block
+                  w-full
+                  h-auto
+                  sm:h-full
+                  sm:w-auto
+                  object-cover
+                  rounded-sm
+                "
+                title={steamGame.response.name}
+                alt={steamGame.response.name}
+                src={
+                  "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" +
+                  steamGame.response.appid +
+                  "/library_600x900_2x.jpg"
+                }
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null
+                  currentTarget.src = "/missing.jpg"
+                }}
+              />
+
               <div className="absolute left-0 top-0 w-0 bluebg font-mono whitespace-nowrap text-clip">
-                <div className="opacity-0">Currently playing!</div>
+                <div className="opacity-0">
+                  Currently playing!
+                </div>
               </div>
             </a>
-          </div>
-        )
-        modernAppend[1] = steamGame.response.name;
-        break;
+          </div>,
+
+          steamGame.response.name
+        ]
+
+        break
     }
   }
-  if (steamActivity.status == 200) {
+
+  /*
+   * STEAM ACTIVITY
+   */
+  if (steamActivity.status === 200) {
     switch (style) {
       case 0:
         steamActivityElement = (
-          steamActivity.response.response.games.map((x: steamGames) => (
-            <div className="flex flex-row mb-5">
-              <div className="flex justify-center items-center">
-                <img className="mr-5 w-40 md:w-50" alt={x.name} src={"https://cdn.cloudflare.steamstatic.com/steam/apps/" + x.appid + "/capsule_231x87.jpg"} onError={({ currentTarget }) => {
-                  currentTarget.onerror = null; // prevents looping
-                  currentTarget.src = "/missing.jpg";
-                }} />
-              </div>
-              <div>
-                <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
-                <br />
-                <span className="hidden md:inline">Time played last 2 weeks:</span><span className="md:hidden">Last 2 weeks:</span> {(Math.round(x.playtime_2weeks / 60 * 100) / 100)} hours
-                <br />
-                <span className="hidden  md:inline">Total time played:</span><span className="md:hidden">Total time:</span> {(Math.round(x.playtime_forever / 60 * 100) / 100)} hours
-              </div>
-            </div>
-          ))
+          <div>
+            {steamActivity.response.response.games.map(
+              (x: steamGames) => (
+                <div key={x.appid} className="flex flex-col sm:flex-row mb-5 gap-4">
+                  <div className="flex justify-center items-center shrink-0">
+                    <img className="w-full max-w-[16rem] sm:w-40 md:w-50" alt={x.name}
+                      src={
+                        "https://cdn.cloudflare.steamstatic.com/steam/apps/" +
+                        x.appid +
+                        "/capsule_231x87.jpg"
+                      }
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null
+                        currentTarget.src = "/missing.jpg"
+                      }}
+                    />
+                  </div>
+                  <div className="text-center sm:text-left">
+                    <a className="!p-0 animateLink" href={"https://store.steampowered.com/app/" + x.appid}>{x.name}</a>
+                    <br />
+                    <span className="hidden md:inline">Time played last 2 weeks:</span>
+                    <span className="md:hidden">Last 2 weeks:</span>{" "}{Math.round((x.playtime_2weeks / 60) * 100) / 100}{" "}hours
+                    <br />
+                    <span className="hidden md:inline">Total time played:</span>
+                    <span className="md:hidden">Total time:</span>{" "}{Math.round((x.playtime_forever / 60) * 100) / 100}{" "}hours
+                  </div>
+                </div>
+              )
+            )}
+          </div>
         )
-        break;
-      case 1:
-        const games = modernAppend[1] ? steamActivity.response.response.games.slice(0, 4).reverse() : steamActivity.response.response.games.slice(0, 5);
-        const namesList = games.map((x: steamGames) => x.name);
+        break
+
+      case 1: {
+        const games = modernAppend[1]
+          ? steamActivity.response.response.games
+            .slice(0, 4)
+            .reverse()
+          : steamActivity.response.response.games.slice(0, 5)
+
+        const namesList = games.map(
+          (x: steamGames) => x.name
+        )
+
         if (modernAppend[1]) {
-          namesList.unshift(modernAppend[1]);
+          namesList.unshift(modernAppend[1])
           namesList.pop()
         }
+
         const names = namesList.join(", ") + "..."
+
         steamActivityElement = (
-          <div className="min-h-[80vh] flex flex-col mt-[10vh]">
-            <div className="h-[35vh] bg-[url(/IMGL2546.jpg)] text-white flex justify-end items-end flex-col p-10 text-4xl bg-cover" style={{ fontFamily: "Lexend Giga", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-              Holding your attention...<br />
-              <div className="font-mono text-lg pl-5">Always more to do but never enough to be new.</div>
-            </div>
-            <div className="h-[40vh] max-h-[500px] pt-[5vh] px-10 flex flex-row items-start justify-end gap-5 relative">
-              <div className="flex-grow text-white h-auto flex items-center overflow-hidden
-              [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]"style={{ fontFamily: "Lexend Giga" }}>
-                <div className="scrolling text-clip text-6xl whitespace-nowrap">{names}&emsp;&emsp;&emsp;</div>
-                <div className="scrolling text-clip text-6xl whitespace-nowrap">{names}&emsp;&emsp;&emsp;</div>
+          <div className="min-h-0 sm:min-h-[80vh] flex flex-col mt-8 sm:mt-[10vh] overflow-hidden">
+            <div className=" min-h-[15rem] sm:h-[35vh] text-white flex justify-end items-start sm:items-end flex-col p-5 sm:p-10 text-2xl sm:text-4xl bg-cover bg-center"
+              style={{ fontFamily: "Lexend Giga", backgroundImage: "url(/IMGL2546.jpg)", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
+            >
+              <div> Holding your attention...</div>
+
+              <div className="font-mono text-sm sm:text-lg pl-0 sm:pl-5 mt-2 max-w-full">
+                Always more to do but never enough to be new.
               </div>
-              {modernAppend[0]}
-              {games.map((x: steamGames) => (
-                <div className="aspect-6/9 h-full w-full max-w-[12vw] slide">
-                  <a href={"https://store.steampowered.com/app/" + x.appid} target="_blank" className="relative block">
-                    <img className="h-full w-auto block" title={x.name} alt={x.name} src={"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + x.appid + "/library_600x900_2x.jpg"} onError={({ currentTarget }) => {
-                      currentTarget.onerror = null; // prevents looping
-                      currentTarget.src = "/missing.jpg";
-                    }} />
-                    <div className="absolute left-0 top-0 w-0 bluebg font-mono whitespace-nowrap text-clip">
-                      <div className="opacity-0">{(Math.round(x.playtime_forever / 60 * 100) / 100)} hours</div>
-                    </div>
-                  </a>
+            </div>
+
+            {/* Games */}
+            <div className=" pt-6 sm:pt-[5vh] px-3 sm:px-10 pb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 relative overflow-hidden">
+              {/* Scrolling text */}
+              <div
+                className="order-1 sm:order-none w-full sm:flex-grow text-white h-auto sm:h-full flex items-center overflow-hidden 
+                [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] font-[Lexend_Giga]">
+                <div className="scrolling text-clip text-xl sm:text-4xl lg:text-6xl whitespace-nowrap ">
+                  {names}&emsp;&emsp;&emsp;
                 </div>
-              ))}
+
+                <div className="scrolling text-clip text-xl sm:text-4xl lg:text-6xl whitespace-nowrap ">
+                  {names}&emsp;&emsp;&emsp;
+                </div>
+              </div>
+
+              {/* Current game */}
+              {modernAppend[0]}
+
+              {/* Game cards */}
+              <div className=" order-2 sm:order-none grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-5 w-full sm:w-auto">
+                {games.map((x: steamGames) => (
+                  <div key={x.appid} 
+                  className="w-full sm:w-auto sm:aspect-[6/9] sm:h-full sm:max-w-[50vw] slide 
+                  last:col-span-2 last:justify-self-center last:w-1/2 sm:last:col-span-1 sm:last:justify-self-auto sm:last:w-auto">
+                    <a href={"https://store.steampowered.com/app/"+x.appid}target="_blank"rel="noreferrer" className="relative block">
+                      <img className=" w-full h-auto sm:h-full sm:w-auto block object-cover"
+                        title={x.name}
+                        alt={x.name}
+                        src={ "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + x.appid + "/library_600x900_2x.jpg"}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null
+                          currentTarget.src = "/missing.jpg"
+                        }}
+                      />
+
+                      <div className=" absolute left-0 top-0 w-0 bluebg font-mono whitespace-nowrap text-clip">
+                        <div className="opacity-0">
+                          {Math.round((x.playtime_forever / 60) * 100) / 100}{" "}hours
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )
-        break;
+
+        break
+      }
     }
   }
 
   return (
-    <div>
+    <div className="w-full max-w-full overflow-x-hidden">
       <HomeStatic style={style} />
-      
-      <h1 className='text-2xl'>
+
+      <h1 className={"text-2xl" + style ? "hidden" : ""}>
         Github Activity
       </h1>
-      {response.githubActivity.status == 200 ? githubActivity : (<>GitHub API failed to respond!<br />{response?.message}</>)}
+
+      {response.githubActivity.status === 200
+        ? githubActivity
+        : (
+          <>
+            GitHub API failed to respond!
+            <br />
+            {response.githubActivity?.response?.message}
+          </>
+        )}
+
       <hr className="my-2" />
-      {!style ? <>
-        <h1 className='text-2xl'>
-          Steam Activity
-        </h1>
-        I enjoy playing video games. Here is some of the ones of played most recently on my Steam account.<br /><br /></> : <></>}
+
+      {!style ? (
+        <>
+          <h1 className="text-2xl">
+            Steam Activity
+          </h1>
+
+          <p>
+            I enjoy playing video games. Here is some of
+            the ones I've played most recently on my Steam
+            account.
+          </p>
+
+          <br />
+        </>
+      ) : null}
+
       {currentSteam}
+
       {steamActivityElement}
+
       <hr className="my-2" />
-      <h1 className='text-2xl my-2'>
+
+      <h1 className="text-2xl my-2">
         Last.fm Activity
       </h1>
-      Last.fm is a service to record my music listening habits since I don't use Spotify.
-      {response.lastfmActivity.status == 200 ? lastfmActivity : (<><br />Last.FM API failed to respond!<br />{response.lastfmActivity?.message}</>)}
+
+      <p>
+        Last.fm is a service to record my music listening
+        habits since I don't use Spotify.
+      </p>
+
+      {response.lastfmActivity.status === 200
+        ? lastfmActivity
+        : (
+          <>
+            <br />
+            Last.FM API failed to respond!
+            <br />
+            {response.lastfmActivity?.response?.message}
+          </>
+        )}
     </div>
   )
 }

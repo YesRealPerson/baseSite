@@ -15,11 +15,11 @@ export default function HomeStatic({ style }: StyleProps) {
         ),
         (
             <>
-                <div className="mt-20 text-white text-4xl" style={{ fontFamily: "Lexend Giga" }} >Somewhere familiar...</div>
+                <div className="mt-20 ml-5 sm:ml-0 text-white text-4xl" style={{ fontFamily: "Lexend Giga" }} >Somewhere familiar...</div>
                 <div className="text-2xl font-mono text-white ml-5">ABOUT THIS PAGE</div>
-                <div className="flex flex-row pt-10 justify-between">
+                <div className="flex flex-col sm:flex-row pt-10 justify-between">
                     <div className="flex flex-col justify-between" style={{ fontFamily: "Lexend Giga" }}>
-                        <div className="text-sm ml-10 mb-10 text-white w-100">
+                        <div className="text-sm px-5 sm:px-0 sm:mx-10 mb-10 text-white w-full sm:w-100">
                             <b className="text-lg">Before going on, know that the text on this page is satirical.</b><br/><br/>You can read more about my inspirations and motivations below.<br/><br/>
                             This version of the site is meant to be kind of emulate that self-important website design feel.
                             A lot of big and bold fonts, big images, and a lot of text to say very little.
@@ -30,15 +30,13 @@ export default function HomeStatic({ style }: StyleProps) {
                             You can say what you want about the game, but it's got some style.
                             <br/><br/>
                             You can press the cycle button on the header to change the website's styling.
-                            <br/><br/>
-                            <i>Sorry mobile users a proper site will eventually come, I'm just sort of lazy.</i>
                         </div>
                         <div className="min-h-[10vh] p-5 text-3xl bg-white">
                                 CONFLUXES.net<br/>
                                 <div className="text-xl font-sans ml-2">Though never the same...</div>
                         </div>
                     </div>
-                    <div className="bg-[url(/0G3A9857.jpg)] h-[70vh]  max-w-[50%] w-[50vw] bg-cover" style={{backgroundPosition: "center bottom", backgroundRepeat: "no-repeat"}}></div>
+                    <div className="bg-[url(/0G3A9857.jpg)] aspect-square sm:aspect-auto sm:h-[70vh] sm:w-full sm:max-w-[50%] sm:w-[50vw] bg-cover bg-position-[center_bottom] bg-no-repeat"></div>
 
                 </div>
             </>

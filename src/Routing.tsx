@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       // },
       {
         path: "/modern/pictures",
-        element: <Photography style={1}/>,
+        element: <Photography style={0}/>,
       },
       {
         path: "/modern/blog",

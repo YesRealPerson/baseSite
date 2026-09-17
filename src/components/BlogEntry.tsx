@@ -37,10 +37,10 @@ const BlogEntry = ({ date, title, subtitle, children, style }: BlogEntryType) =>
             return (
                 <>
                     <div className="bg-gray-900 p-10 rounded-md my-5">
-                        <div className="border-left ml-4 border-l border-gray-100 pl-2 text-white" style={{ fontFamily: "Lexend Giga" }}>
+                        <div className="border-left md:ml-4 border-l border-gray-100 pl-2 text-white" style={{ fontFamily: "Lexend Giga" }}>
                             <div className="text-3xl md:text-4xl mt-2">
                                 <h1 className="inline">{title} </h1>
-                                <InlineMath math="\vert"></InlineMath>
+                                <span className="hidden md:inline"><InlineMath math="\vert"></InlineMath></span>
                                 <h1 className="hidden md:inline"> {date}</h1>
                                 <br />
                                 <h1 className="text-gray-700 text-2xl inline md:hidden">{date}</h1>

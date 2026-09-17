@@ -48,7 +48,7 @@ const Img = ({ src, alt, className, details }: ImgProps) => {
                     <hr className="my-1 xl:my-[.5em]"/>
                     {detailsElement}
                     <div className="mt-5 py-1 text-white bg-gray-800 text-center">
-                        <a href={src} className="!border-none hover:text-gray-300" download={true}>download</a>
+                        <a href={"/"+src.split("/")[2]} className="!border-none hover:text-gray-300" download={true}>download</a>
                     </div>
                 </div>
             </div>

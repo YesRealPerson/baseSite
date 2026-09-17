@@ -28,4 +28,4 @@ for x in files:
                     details.append([names[idx], v])
             if(not len(details)):
                 details.append(["Camera", "EOS R8"])
-            print("{\n"+f'src: "/{x}",\nalt: "TODO",\ndetails:{details}'+"\n},")
+            print("{\n"+f'src: "/output/{x}",\nalt: "TODO",\ndetails:{details}'+"\n},")

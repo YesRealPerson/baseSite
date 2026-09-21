@@ -36,7 +36,7 @@ export default function HomeStatic({ style }: StyleProps) {
                                 <div className="text-xl font-sans ml-2">Though never the same...</div>
                         </div>
                     </div>
-                    <div className="bg-[url(/0G3A9857.jpg)] aspect-square sm:aspect-auto sm:h-[70vh] sm:w-full sm:max-w-[50%] sm:w-[50vw] bg-cover bg-position-[center_bottom] bg-no-repeat"></div>
+                    <div className="bg-[url(/slideshow/0G3A9857.jpg)] aspect-square sm:aspect-auto sm:h-[70vh] sm:w-full sm:max-w-[50%] sm:w-[50vw] bg-cover bg-position-[center_bottom] bg-no-repeat"></div>
 
                 </div>
             </>

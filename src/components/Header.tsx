@@ -119,7 +119,7 @@ export default function Header({ style, loading }: StyleProps) {
             </div>
             {/* SPLASH IMAGE */}
             <div className="flex flex-row h-[100vh] max-w-[2000px] w-full relative">
-                <Slideshow />
+                <Slideshow/>
                 <div className="absolute w-full h-full flex justify-center items-center left-0 top-0">
                     <div style={{ fontFamily: "Lexend Giga" }} className={loading ? "text-2xl md:text-8xl w-[90%] px-5 md:w-auto backdrop-brightness-25 backdrop-blur-xs backdrop-invert-100 pulse flex items-center justify-center text-black md:ml-20 text-center" : "hidden"}>Loading content...</div>
                 </div>

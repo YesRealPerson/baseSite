@@ -2,23 +2,23 @@ import { useState, useEffect } from 'react';
 
 // TODO: Change images to something more fitting to look at
 const images = [
-    "/IMGL3654.jpg", 
-    "/IMG_6911.jpg", 
-    "/0G3A9885.jpg", 
-    "/IMG_0265.jpg", 
-    "/IMG_7694.jpg", 
-    "/IMG_7766.jpg", 
-    "/IMGL3649.jpg", 
-    "/IMG_8235.jpg"]
+    "/slideshow/IMGL3654.jpg", 
+    // "/slideshow/IMG_6911.jpg", campanille looks bad on desktop
+    "/slideshow/0G3A9885.jpg", 
+    "/slideshow/IMG_0265.jpg", 
+    "/slideshow/IMG_7694.jpg", 
+    "/slideshow/IMG_7766.jpg", 
+    "/slideshow/IMGL3649.jpg", 
+    "/slideshow/IMG_8235.jpg"]
 const positions = [
     "object-center",
-    "object-[center_-10px]",
+    // "sm:object-[center_-10px]",
     "object-center",
     "object-center",
-    "object-[center_bottom]",
-    "object-[center_-10px]",
+    "object-center sm:object-[center_bottom]",
+    "object-center sm:object-[center_-10px]",
     "object-center",
-    "object-[-250px]",
+    "object-[-250px] sm:object-center",
 ]
 // const filters = ["filter1"]
 
@@ -62,9 +62,9 @@ export default function Slideshow() {
     return (
         <>
             <div>
-                <img src={images[index]} className={'max-w-[2000px] w-[100vw] h-full object-cover noninverted '+positions[index]} />
-                <img src={images[index]} id="in1" className={'max-w-[2000px] mx-auto w-[100vw] h-full object-cover inverted '+positions[index]+" "+animation} />
-                <img src={images[index]} id="in2" className={'max-w-[2000px] mx-auto w-[100vw] h-full object-cover inverted '+positions[index]+" "+filter+" "+animation} />
+                <img src={images[index]} className={'max-w-[2000px] w-[100vw] h-full noninverted '+positions[index]} />
+                <img src={images[index]} id="in1" className={'max-w-[2000px] mx-auto w-[100vw] h-full inverted '+positions[index]+" "+animation} />
+                <img src={images[index]} id="in2" className={'max-w-[2000px] mx-auto w-[100vw] h-full inverted '+positions[index]+" "+filter+" "+animation} />
             </div>
             {imageloader}
         </>

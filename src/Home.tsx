@@ -109,10 +109,14 @@ export default function Index({ style }: StyleProps) {
   /*
    * CURRENT STEAM GAME
    */
+  let outer = "w-full sm:w-auto sm:aspect-[6/9] sm:h-full sm:max-w-[50vw] slide"
+  let lastModifier = " last:col-span-2 last:justify-self-center last:w-1/2 sm:last:col-span-1 sm:last:justify-self-auto sm:last:w-auto"
+  let inner = "w-full h-auto sm:h-full sm:w-auto block object-cover"
   if (
     steamGame.status === 200 &&
     steamGame.response.status === "yes"
   ) {
+    
     switch (style) {
       case 0:
         currentSteam = (
@@ -151,7 +155,7 @@ export default function Index({ style }: StyleProps) {
 
       case 1:
         modernAppend = [
-          <div className="w-full sm:w-auto sm:aspect-[6/9] sm:h-full shrink-0 slide">
+          <div className={outer}>
             <a
               href={steamGame.response.link}
               target="_blank"
@@ -159,15 +163,7 @@ export default function Index({ style }: StyleProps) {
               className="relative block"
             >
               <img
-                className="
-                  block
-                  w-full
-                  h-auto
-                  sm:h-full
-                  sm:w-auto
-                  object-cover
-                  rounded-sm
-                "
+                className={inner}
                 title={steamGame.response.name}
                 alt={steamGame.response.name}
                 src={
@@ -237,27 +233,33 @@ export default function Index({ style }: StyleProps) {
         break
 
       case 1: {
-        const games = modernAppend[1]
-          ? steamActivity.response.response.games
-            .slice(0, 4)
-            .reverse()
-          : steamActivity.response.response.games.slice(0, 5)
+        let games = steamActivity.response.response.games.reverse(); // Reverse for chronological order
+        if(modernAppend[1]){
+          // Cap games list to 4
+          if (games.length > 4) games = games.slice(0, 4);
+          // Remove currently playing game
+          for (let i = 0; i < games.length; i++){
+            if (games[i].name == modernAppend[1]){
+              games.splice(i, 1)
+              break
+            }
+          }
+        }
 
         const namesList = games.map(
           (x: steamGames) => x.name
         )
-
         if (modernAppend[1]) {
           namesList.unshift(modernAppend[1])
-          namesList.pop()
         }
+        console.log(namesList)
 
         const names = namesList.join(", ") + "..."
 
         steamActivityElement = (
           <div className="min-h-0 sm:min-h-[80vh] flex flex-col mt-8 sm:mt-[10vh] overflow-hidden">
             <div className=" min-h-[15rem] sm:h-[35vh] text-white flex justify-end items-start sm:items-end flex-col p-5 sm:p-10 text-2xl sm:text-4xl bg-cover bg-center"
-              style={{ fontFamily: "Lexend Giga", backgroundImage: "url(/IMGL2546.jpg)", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
+              style={{ fontFamily: "Lexend Giga", backgroundImage: "url(/slideshow/IMGL2546.jpg)", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
             >
               <div> Holding your attention...</div>
 
@@ -270,28 +272,28 @@ export default function Index({ style }: StyleProps) {
             <div className=" pt-6 sm:pt-[5vh] px-3 sm:px-10 pb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 relative overflow-hidden">
               {/* Scrolling text */}
               <div
-                className="order-1 sm:order-none w-full sm:flex-grow text-white h-auto sm:h-full flex items-center overflow-hidden 
+                className="order-1 sm:py-2 sm:order-none w-full sm:flex-grow text-white h-auto sm:h-full flex items-center overflow-hidden 
                 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] font-[Lexend_Giga]">
-                <div className="scrolling text-clip text-xl sm:text-4xl lg:text-6xl whitespace-nowrap ">
+                <div className="scrolling text-clip text-xl sm:text-4xl whitespace-nowrap ">
                   {names}&emsp;&emsp;&emsp;
                 </div>
 
-                <div className="scrolling text-clip text-xl sm:text-4xl lg:text-6xl whitespace-nowrap ">
+                <div className="scrolling text-clip text-xl sm:text-4xl whitespace-nowrap ">
                   {names}&emsp;&emsp;&emsp;
                 </div>
               </div>
 
-              {/* Current game */}
-              {modernAppend[0]}
+              
 
               {/* Game cards */}
-              <div className=" order-2 sm:order-none grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-5 w-full sm:w-auto">
+              <div className="order-2 sm:order-none grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-5 w-full sm:w-auto">
+                {/* Current game */}
+                {modernAppend[0]}
                 {games.map((x: steamGames) => (
                   <div key={x.appid} 
-                  className="w-full sm:w-auto sm:aspect-[6/9] sm:h-full sm:max-w-[50vw] slide 
-                  last:col-span-2 last:justify-self-center last:w-1/2 sm:last:col-span-1 sm:last:justify-self-auto sm:last:w-auto">
+                  className={outer + (namesList.length % 2 == 0 ? "" : lastModifier)}>
                     <a href={"https://store.steampowered.com/app/"+x.appid}target="_blank"rel="noreferrer" className="relative block">
-                      <img className=" w-full h-auto sm:h-full sm:w-auto block object-cover"
+                      <img className={inner}
                         title={x.name}
                         alt={x.name}
                         src={ "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/" + x.appid + "/library_600x900_2x.jpg"}

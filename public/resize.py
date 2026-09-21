@@ -2,12 +2,25 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 INPUT_DIR = Path("./")
-OUTPUT_DIR = Path("output")
+OUTPUT_DIR = Path("slideshow")
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+acceptable = [
+    "IMGL3654.jpg", 
+    "IMG_6911.jpg", 
+    "0G3A9885.jpg", 
+    "IMG_0265.jpg", 
+    "IMG_7694.jpg", 
+    "IMG_7766.jpg", 
+    "IMGL3649.jpg", 
+    "IMG_8235.jpg",
+    "IMGL2546.jpg",
+    "0G3A9857.jpg",
+    "IMG_8298.jpg"
+    ]
 
 for path in INPUT_DIR.iterdir():
-    if path.suffix.lower() not in {".jpg", ".jpeg"}:
+    if path.suffix.lower() not in {".jpg", ".jpeg"} or path.name not in acceptable:
         continue
 
     with Image.open(path) as img:
@@ -17,9 +30,9 @@ for path in INPUT_DIR.iterdir():
         width, height = img.size
 
         if width >= height:
-            target_size = (1500, 1000)
+            target_size = (3000, 2000)
         else:
-            target_size = (1000, 1500)
+            target_size = (2000, 3000)
 
         # Resize while preserving aspect ratio, then center-crop
         img = ImageOps.fit(
@@ -34,7 +47,7 @@ for path in INPUT_DIR.iterdir():
         img.save(
             output_path,
             "JPEG",
-            quality=75,
+            quality=85,
             optimize=True
         )
 

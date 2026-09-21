@@ -76,7 +76,7 @@ export default async function parseGithubAPI(response: any, style: number) {
                             <a href={"https://github.com/" + events[0].actor.login} target="_blank" className="animateLink" style={{ fontFamily: "Lexend Giga" }}>VERSION CONTROL <InlineMath math="\Rsh"></InlineMath></a>
                         </div>
                     </div>
-                    <div className="absolute aspect-1/2 sm:aspect-2/1 right-0 bottom-0 h-auto w-full sm:h-full sm:w-auto sm:max-w-[50%] sm:max-h-[100%] max-h-[50%] bg-[url(/IMG_8298.jpg)]
+                    <div className="absolute aspect-1/2 sm:aspect-2/1 right-0 bottom-0 h-auto w-full sm:h-full sm:w-auto sm:max-w-[50%] sm:max-h-[100%] max-h-[50%] bg-[url(/slideshow/IMG_8298.jpg)]
                     sm:[mask-image:linear-gradient(to_right,transparent,black_50%)] 
                     [mask-image:linear-gradient(to_bottom,transparent,black_50%)] 
                     z-[-1]

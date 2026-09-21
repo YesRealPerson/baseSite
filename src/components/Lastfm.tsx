@@ -138,7 +138,7 @@ export default function parseLastFMAPI(
             ))
 
             // Recent songs
-            recentElement = response.recent.recenttracks.track.map((x) => (
+            recentElement = tracks.map((x) => (
                 <div
                     className="
                         flex
@@ -211,7 +211,8 @@ export default function parseLastFMAPI(
             )
 
         case 1:
-            topElement = response.top.toptracks.track.map((x) => (
+            const toptracks = response.top.toptracks.track.slice(0,5);
+            topElement = toptracks.map((x) => (
                 <div
                     className="
                         w-full
@@ -297,7 +298,8 @@ export default function parseLastFMAPI(
                 </div>
             ))
 
-            recentElement = response.recent.recenttracks.track.map((x) => (
+            const recenttracks = response.recent.recenttracks.track.slice(0, 5);
+            recentElement = recenttracks.map((x) => (
                 <div
                     className="w-full min-w-0 music last:col-span-2 last:justify-self-center last:w-1/2 sm:last:col-span-1 sm:last:justify-self-auto sm:last:w-full"
                     key={x.url}
